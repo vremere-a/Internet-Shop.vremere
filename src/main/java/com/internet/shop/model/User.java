@@ -1,12 +1,12 @@
-package shop.model;
+package com.internet.shop.model;
 
 public class User {
-    private long id;
+    private Long id;
     private String name;
     private String login;
     private String password;
 
-    public User(long id, String name, String login, String password) {
+    public User(Long id, String name, String login, String password) {
         this.id = id;
         this.name = name;
         this.login = login;
@@ -17,7 +17,7 @@ public class User {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,9 +1,9 @@
-package shop.model;
+package com.internet.shop.model;
 
 import java.math.BigDecimal;
 
 public class Product {
-    private long id;
+    private Long id;
     private String name;
     private BigDecimal price;
 
@@ -16,7 +16,7 @@ public class Product {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
