@@ -12,7 +12,7 @@ public class Product {
         this.price = BigDecimal.valueOf(price);
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

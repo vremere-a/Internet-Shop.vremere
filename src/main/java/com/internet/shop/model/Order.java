@@ -3,7 +3,6 @@ package com.internet.shop.model;
 import java.util.List;
 
 public class Order {
-//    private long id;
     private List<Product> products;
     private Long userId;
 
@@ -11,14 +10,6 @@ public class Order {
         this.products = products;
         this.userId = userId;
     }
-
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
 
     public List<Product> getProducts() {
         return products;
@@ -28,7 +19,7 @@ public class Order {
         this.products = products;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 

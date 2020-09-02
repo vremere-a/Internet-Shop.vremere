@@ -7,13 +7,11 @@ public interface ProductService {
 
     Product create(Product product);
 
-    Product geById(Long productId);
+    Product getById(Long productId);
 
     Product update(Product product);
 
     boolean deleteById(Long productId);
-
-    boolean delete(Product product);
 
     List<Product> getAllProducts();
 }

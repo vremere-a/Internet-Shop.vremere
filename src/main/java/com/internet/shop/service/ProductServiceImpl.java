@@ -1,14 +1,13 @@
 package com.internet.shop.service;
 
 import com.internet.shop.dao.ProductDao;
-import com.internet.shop.db.Storage;
 import com.internet.shop.lib.Service;
 import com.internet.shop.model.Product;
 import com.internet.shop.lib.Inject;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Inject
     private ProductDao productDao;
@@ -19,7 +18,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product geById(Long productId) {
+    public Product getById(Long productId) {
         return productDao.geById(productId).orElseThrow();
     }
 
@@ -31,11 +30,6 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public boolean deleteById(Long productId) {
         return productDao.deleteById(productId);
-    }
-
-    @Override
-    public boolean delete(Product product) {
-        return productDao.delete(product);
     }
 
     @Override
