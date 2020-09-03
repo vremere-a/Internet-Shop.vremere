@@ -10,24 +10,25 @@ public class Main {
 
     public static void main(String[] args) {
         ProductService productService = (ProductService) injector.getInstance(ProductService.class);
-        productService.create(new Product("PS4", 500));
-        productService.create(new Product("XBOX", 450));
-        productService.create(new Product("Nintendo", 300));
+
+        Product xbox = new Product("XBOX", 450);
+        Product nintendo = new Product("Nintendo", 300);
+        Product playStation = new Product("PS4", 500);
+        productService.create(playStation);
+        productService.create(xbox);
+        productService.create(nintendo);
+
         System.out.println("All Products:");
         Storage.products.forEach(System.out::println);
-        System.out.println();
+        System.out.println("getById 1");
+        System.out.println(playStation.getId());
         productService.deleteById(2L);
         System.out.println("Delete product by ID 2");
         Storage.products.forEach(System.out::println);
-        System.out.println();
-        System.out.println("getById 1");
-        System.out.println(productService.getById(1L));
-        System.out.println();
+
         System.out.println("update PS4 to Sega");
-        Product newProduct = new Product("Sega", 50);
-        newProduct.setId(1L);
-        productService.update(newProduct);
-        System.out.println();
+        playStation.setPrice(200);
+        productService.update(playStation);
         Storage.products.forEach(System.out::println);
     }
 }
