@@ -18,7 +18,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Optional<Product> geById(Long productId) {
         return getAllProducts().stream()
-                .filter(product->product.getId().equals(productId))
+                .filter(product -> product.getId().equals(productId))
                 .findFirst();
     }
 
