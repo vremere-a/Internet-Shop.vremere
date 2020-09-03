@@ -3,22 +3,23 @@ package com.internet.shop.model;
 import java.util.List;
 
 public class ShoppingCart {
-//    private long id;
+    private Long id;
     private List<Product> products;
     private Long userId;
 
-    public ShoppingCart(List<Product> products, Long userId) {
+    public ShoppingCart(Long id, List<Product> products, Long userId) {
+        this.id = id;
         this.products = products;
         this.userId = userId;
     }
 
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public List<Product> getProducts() {
         return products;
