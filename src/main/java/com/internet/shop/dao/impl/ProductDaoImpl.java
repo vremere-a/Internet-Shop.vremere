@@ -17,12 +17,9 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Optional<Product> geById(Long productId) {
-        for (int i = 0; i < Storage.products.size(); i++) {
-            if (Storage.products.get(i).getId().equals(productId)) {
-                return Optional.ofNullable(Storage.products.get(i));
-            }
-        }
-        return Optional.empty();
+        return getAllProducts().stream()
+                .filter(product->product.getId().equals(productId))
+                .findFirst();
     }
 
     @Override
