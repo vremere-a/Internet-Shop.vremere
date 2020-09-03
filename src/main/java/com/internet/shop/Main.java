@@ -17,7 +17,7 @@ public class Main {
         Storage.products.forEach(System.out::println);
         System.out.println();
         productService.deleteById(2L);
-        System.out.println("Delete product by ID 1");
+        System.out.println("Delete product by ID 2");
         Storage.products.forEach(System.out::println);
         System.out.println();
         System.out.println("getById 1");
