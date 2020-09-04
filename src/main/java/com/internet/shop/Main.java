@@ -22,11 +22,11 @@ public class Main {
         Storage.products.forEach(System.out::println);
         System.out.println("getById 1");
         System.out.println(playStation.getId());
-        productService.deleteById(2L);
+        productService.deleteById(nintendo.getId());
         System.out.println("Delete product by ID 2");
         Storage.products.forEach(System.out::println);
 
-        System.out.println("update PS4 to Sega");
+        System.out.println("update price in PS4");
         playStation.setPrice(200);
         productService.update(playStation);
         Storage.products.forEach(System.out::println);

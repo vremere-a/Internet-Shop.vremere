@@ -14,7 +14,7 @@ public class Storage {
     public static final List<User> users = new ArrayList<>();
     private static Long productId = 0L;
     private static Long userId = 0L;
-    private static Long orderId =0L;
+    private static Long orderId = 0L;
     private static Long cartId = 0L;
 
     public static void addProduct(Product product) {
