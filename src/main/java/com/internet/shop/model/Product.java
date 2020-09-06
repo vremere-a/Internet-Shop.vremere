@@ -12,5 +12,4 @@ public class Product {
     private String name;
     @NonNull
     private double price;
-
 }
