@@ -8,11 +8,11 @@ public interface OrderDAO {
 
     Order create(Order order);
 
-    Optional<Order> getById(Order id);
-
-    Order update(Order order);
+    Optional<Order> getById(Long id);
 
     boolean deleteById(Long id);
 
     List<Order> getAllOrders();
+
+    List<Order> getUserOrders(Long userId);
 }
