@@ -43,6 +43,7 @@ public class Main {
         ShoppingCart shoppingCartUser3 = new ShoppingCart(user3.getId());
         shoppingCartService.create(shoppingCartUser3);
         Storage.shoppingCarts.forEach(System.out::println);
+/////// Orders
         System.out.println("Add Product to Cart:");
         shoppingCartService.addProduct(shoppingCartUser1,playStation);
         shoppingCartService.addProduct(shoppingCartUser1,xbox);
@@ -59,9 +60,9 @@ public class Main {
         System.out.println("delete Cart ID 2");
         shoppingCartService.delete(shoppingCartUser3);
         Storage.shoppingCarts.forEach(System.out::println);
-//        System.out.println("Clear all product");
-//        shoppingCartService.create(shoppingCartUser1);
-//        Storage.shoppingCarts.forEach(System.out::println);
+        System.out.println("Clear all product");
+        shoppingCartService.clear(shoppingCartUser1);
+        Storage.shoppingCarts.forEach(System.out::println);
 
 //        User user2 = new User("Tim","tim222", "222");
 //        User user3 = new User("Ted","ted333", "333");
