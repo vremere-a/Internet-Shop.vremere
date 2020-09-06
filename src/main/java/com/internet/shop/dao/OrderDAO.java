@@ -14,5 +14,5 @@ public interface OrderDAO {
 
     boolean deleteById(Long id);
 
-    List<Order> getAllProducts();
+    List<Order> getAllOrders();
 }

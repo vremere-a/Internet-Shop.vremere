@@ -6,13 +6,13 @@ import java.util.Optional;
 
 public interface UserDao {
 
-    User create(User shoppingCart);
+    User create(User user);
 
-    Optional<User> getById(User id);
+    Optional<User> getById(Long id);
 
-    User update(User shoppingCart);
+    User update(User user);
 
     boolean deleteById(Long id);
 
-    List<User> getAllProducts();
+    List<User> getAllUsers();
 }
