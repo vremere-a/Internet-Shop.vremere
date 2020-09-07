@@ -15,7 +15,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ProductService productService = (ProductService) injector.getInstance(ProductService.class);
+        final ProductService productService =
+                (ProductService) injector.getInstance(ProductService.class);
+        final ShoppingCartService shoppingCartService =
+                (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+        final UserService userService = (UserService) injector.getInstance(UserService.class);
+        final OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
+
         Product xbox = new Product("XBOX", 450);
         Product nintendo = new Product("Nintendo", 300);
         Product playStation = new Product("PS4", 500);
@@ -31,16 +37,13 @@ public class Main {
         productService.create(subor);
         productService.create(tetris);
 
-        UserService userService = (UserService) injector.getInstance(UserService.class);
-        User user1 = new User("Tom","tom111", "111");
-        User user2 = new User("Tim","tim222", "222");
-        User user3 = new User("Ted","ted333", "333");
+        User user1 = new User("Tom", "tom111", "111");
+        User user2 = new User("Tim", "tim222", "222");
+        User user3 = new User("Ted", "ted333", "333");
         userService.create(user1);
         userService.create(user2);
         userService.create(user3);
 
-        ShoppingCartService shoppingCartService =
-                (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
         ShoppingCart shoppingCartUser1 = new ShoppingCart(user1.getId());
         ShoppingCart shoppingCartUser2 = new ShoppingCart(user2.getId());
         ShoppingCart shoppingCartUser3 = new ShoppingCart(user3.getId());
@@ -51,19 +54,19 @@ public class Main {
         shoppingCartService.create(shoppingCartUser2new);
 
         System.out.println("Add Product to Cart:");
-        shoppingCartService.addProduct(shoppingCartUser1,playStation);
-        shoppingCartService.addProduct(shoppingCartUser1,xbox);
-        shoppingCartService.addProduct(shoppingCartUser1,nintendo);
-        shoppingCartService.addProduct(shoppingCartUser2,tetris);
-        shoppingCartService.addProduct(shoppingCartUser2,sega);
-        shoppingCartService.addProduct(shoppingCartUser3,sega);
-        shoppingCartService.addProduct(shoppingCartUser3,dendy);
-        shoppingCartService.addProduct(shoppingCartUser3,subor);
-        shoppingCartService.addProduct(shoppingCartUser2new,playStation);
+        shoppingCartService.addProduct(shoppingCartUser1, playStation);
+        shoppingCartService.addProduct(shoppingCartUser1, xbox);
+        shoppingCartService.addProduct(shoppingCartUser1, nintendo);
+        shoppingCartService.addProduct(shoppingCartUser2, tetris);
+        shoppingCartService.addProduct(shoppingCartUser2, sega);
+        shoppingCartService.addProduct(shoppingCartUser3, sega);
+        shoppingCartService.addProduct(shoppingCartUser3, dendy);
+        shoppingCartService.addProduct(shoppingCartUser3, subor);
+        shoppingCartService.addProduct(shoppingCartUser2new, playStation);
         Storage.shoppingCarts.forEach(System.out::println);
 
         System.out.println("Delete xbox from Cart#1:");
-        shoppingCartService.deleteProduct(shoppingCartUser1,xbox);
+        shoppingCartService.deleteProduct(shoppingCartUser1, xbox);
         Storage.shoppingCarts.forEach(System.out::println);
 
         System.out.println("get ID by User#3");
@@ -77,7 +80,6 @@ public class Main {
         shoppingCartService.clear(shoppingCartUser1);
         Storage.shoppingCarts.forEach(System.out::println);
 
-        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
         System.out.println("complete order User#2");
         orderService.completeOrder(shoppingCartUser2);
         orderService.completeOrder(shoppingCartUser2new);
