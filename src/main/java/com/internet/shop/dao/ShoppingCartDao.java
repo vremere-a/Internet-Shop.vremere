@@ -12,7 +12,7 @@ public interface ShoppingCartDao {
 
     boolean deleteById(Long id);
 
-    List<ShoppingCart> getAllShoppingCarts();
+    List<ShoppingCart> getAll();
 
     ShoppingCart update(ShoppingCart shoppingCart);
 }

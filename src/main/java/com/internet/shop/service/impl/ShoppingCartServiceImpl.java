@@ -24,18 +24,21 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
-        shoppingCart.getProducts().add(productDao.getById(product.getId()).get());
-        return shoppingCart;
+        shoppingCart.getProducts().add(product);
+        return shoppingCartDao.update(shoppingCart);
     }
 
     @Override
     public boolean deleteProduct(ShoppingCart shoppingCart, Product product) {
-        return shoppingCart.getProducts().remove(productDao.getById(product.getId()).get());
+        boolean result = shoppingCart.getProducts().remove(product);
+        shoppingCartDao.update(shoppingCart);
+        return result;
     }
 
     @Override
     public void clear(ShoppingCart shoppingCart) {
-        shoppingCart.getProducts().removeAll(shoppingCart.getProducts());
+        shoppingCart.getProducts().clear();
+        shoppingCartDao.update(shoppingCart);
     }
 
     @Override

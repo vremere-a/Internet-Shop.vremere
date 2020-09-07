@@ -1,15 +1,9 @@
 package com.internet.shop.model;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
+@Data
 public class User {
     private Long id;
     @NonNull
