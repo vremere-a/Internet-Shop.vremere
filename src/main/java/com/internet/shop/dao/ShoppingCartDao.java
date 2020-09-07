@@ -2,11 +2,10 @@ package com.internet.shop.dao;
 
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
-
 import java.util.List;
 import java.util.Optional;
 
-public interface ShoppingCartDAO {
+public interface ShoppingCartDao {
 
     ShoppingCart create(ShoppingCart shoppingCart);
 

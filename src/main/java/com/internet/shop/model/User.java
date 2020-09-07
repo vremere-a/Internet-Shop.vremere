@@ -1,9 +1,9 @@
 package com.internet.shop.model;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.NonNull;
 import lombok.ToString;
 
 @Getter

@@ -1,16 +1,15 @@
 package com.internet.shop.dao.impl;
 
-import com.internet.shop.dao.OrderDAO;
+import com.internet.shop.dao.OrderDao;
 import com.internet.shop.db.Storage;
 import com.internet.shop.lib.Dao;
 import com.internet.shop.model.Order;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Dao
-public class OrderDaoImpl implements OrderDAO {
+public class OrderDaoImpl implements OrderDao {
     @Override
     public Order create(Order order) {
         Storage.addOrder(order);
