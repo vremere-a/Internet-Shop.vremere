@@ -7,6 +7,7 @@ import com.internet.shop.lib.Service;
 import com.internet.shop.model.Order;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.service.OrderService;
+
 import java.util.List;
 
 @Service
@@ -20,10 +21,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order completeOrder(ShoppingCart shoppingCart) {
-//        orderDAO.create(orderDAO.getUserOrders());
-//        List.copyOf(shoppingCart.getProducts());
-//        shoppingCartDAO.clear(shoppingCart);
-        return null;
+        Order order = orderDAO.create(new Order(shoppingCart.getUserId()));
+        order.setProducts(List.copyOf(shoppingCart.getProducts()));
+//        List<Product> df = List.copyOf(shoppingCart.getProducts());
+//        for (Product product : df)
+        shoppingCartDAO.clear(shoppingCart);
+        return order;
     }
 
     @Override
