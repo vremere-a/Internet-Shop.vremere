@@ -1,8 +1,8 @@
-package com.internet.shop.dao.impl;
+package com.internet.shop.dao.implementations;
 
-import com.internet.shop.dao.OrderDao;
-import com.internet.shop.db.Storage;
-import com.internet.shop.lib.Dao;
+import com.internet.shop.dao.interfaces.OrderDao;
+import com.internet.shop.database.Storage;
+import com.internet.shop.library.Dao;
 import com.internet.shop.model.Order;
 import java.util.List;
 import java.util.Optional;

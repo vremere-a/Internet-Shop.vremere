@@ -1,4 +1,4 @@
-package com.internet.shop.db;
+package com.internet.shop.database;
 
 import com.internet.shop.model.Order;
 import com.internet.shop.model.Product;

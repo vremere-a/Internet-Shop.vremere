@@ -1,8 +1,8 @@
-package com.internet.shop.dao.impl;
+package com.internet.shop.dao.implementations;
 
-import com.internet.shop.dao.ShoppingCartDao;
-import com.internet.shop.db.Storage;
-import com.internet.shop.lib.Dao;
+import com.internet.shop.dao.interfaces.ShoppingCartDao;
+import com.internet.shop.database.Storage;
+import com.internet.shop.library.Dao;
 import com.internet.shop.model.ShoppingCart;
 import java.util.List;
 import java.util.Optional;
