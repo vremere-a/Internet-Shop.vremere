@@ -37,9 +37,27 @@ public class Main {
         productService.create(subor);
         productService.create(tetris);
 
-        User user1 = new User("Tom", "tom111", "111");
-        User user2 = new User("Tim", "tim222", "222");
-        User user3 = new User("Ted", "ted333", "333");
+        User user1 = new User(
+                "Tom",
+                "Scott",
+                "sobaka@ukr.net",
+                2L,
+                "scotty",
+                "123");
+        User user2 = new User(
+                "Tim",
+                "Scott",
+                "sobaka@ukr.net",
+                2L,
+                "scotty",
+                "123");
+        User user3 = new User(
+                "Ted",
+                "Scott",
+                "sobaka@ukr.net",
+                2L,
+                "scotty",
+                "123");
         userService.create(user1);
         userService.create(user2);
         userService.create(user3);

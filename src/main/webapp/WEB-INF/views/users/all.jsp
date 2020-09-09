@@ -11,7 +11,11 @@
     <tr>
         <td>ID</td>
         <td>Name</td>
+        <td>Surname</td>
+        <td>E-mail</td>
+        <td>Phone</td>
         <td>Login</td>
+
     </tr>
     <c:forEach var="user" items="${users}">
     <tr>
@@ -22,6 +26,15 @@
             <c:out value="${user.name}"/>
         </td>
         <td>
+            <c:out value="${user.surname}"/>
+        </td>
+        <td>
+            <c:out value="${user.email}"/>
+        </td>
+        <td>
+            <c:out value="${user.phone}"/>
+        </td>
+        <td>
             <c:out value="${user.login}"/>
         </td>
         <td>
@@ -30,5 +43,8 @@
     </tr>
     </c:forEach>
 </table>
+<p>
+    <a href="${pageContext.request.contextPath}/">back to main page</a>
+</p>
 </body>
 </html>

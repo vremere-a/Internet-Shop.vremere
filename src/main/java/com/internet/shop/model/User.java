@@ -9,6 +9,12 @@ public class User {
     @NonNull
     private String name;
     @NonNull
+    private String surname;
+    @NonNull
+    private String email;
+    @NonNull
+    private Long phone;
+    @NonNull
     private String login;
     @NonNull
     private String password;

@@ -23,13 +23,15 @@ public class RegistrationController extends HttpServlet {
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");
         String email = req.getParameter("email");
+        String phoneString = req.getParameter("phone");
+        Long phone = Long.valueOf(phoneString);
         String password = req.getParameter("pwd");
         String repeatPassword = req.getParameter("pwd-repeat");
 
 
         if (password.equals(repeatPassword)) {
-            userService.create(new User(name,login,password));
-            resp.sendRedirect(req.getContextPath() + "/users/all");
+            userService.create(new User(name,surname,email,phone,login,password));
+            resp.sendRedirect(req.getContextPath() + "/");
 
         } else {
             req.setAttribute("message", "Your password and repeat password aren't the same.");
