@@ -1,12 +1,13 @@
-package com.internet.shop.service.impl;
+package com.internet.shop.service.implementations;
 
-import com.internet.shop.dao.ProductDao;
-import com.internet.shop.dao.ShoppingCartDao;
-import com.internet.shop.lib.Inject;
-import com.internet.shop.lib.Service;
+import com.internet.shop.dao.interfaces.ProductDao;
+import com.internet.shop.dao.interfaces.ShoppingCartDao;
+import com.internet.shop.library.Inject;
+import com.internet.shop.library.Service;
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
-import com.internet.shop.service.ShoppingCartService;
+import com.internet.shop.service.interfaces.ShoppingCartService;
+import java.util.List;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -20,6 +21,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {
         return shoppingCartDao.create(shoppingCart);
+    }
+
+    @Override
+    public ShoppingCart getByUserId(Long userid) {
+        return shoppingCartDao.getByUserId(userid).get();
     }
 
     @Override
@@ -42,12 +48,22 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public ShoppingCart getByUserId(Long userId) {
-        return shoppingCartDao.getById(userId).get();
+    public ShoppingCart getById(Long id) {
+        return shoppingCartDao.getById(id).get();
     }
 
     @Override
     public boolean delete(ShoppingCart shoppingCart) {
         return shoppingCartDao.deleteById(shoppingCart.getId());
+    }
+
+    @Override
+    public List<ShoppingCart> getAll() {
+        return shoppingCartDao.getAll();
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        return shoppingCartDao.deleteById(id);
     }
 }

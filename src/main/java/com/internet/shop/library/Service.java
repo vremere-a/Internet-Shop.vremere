@@ -1,4 +1,4 @@
-package com.internet.shop.lib;
+package com.internet.shop.library;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,5 +7,5 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Dao {
+public @interface Service {
 }

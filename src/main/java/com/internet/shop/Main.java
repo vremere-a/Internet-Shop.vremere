@@ -1,14 +1,14 @@
 package com.internet.shop;
 
-import com.internet.shop.db.Storage;
-import com.internet.shop.lib.Injector;
+import com.internet.shop.database.Storage;
+import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.model.User;
-import com.internet.shop.service.OrderService;
-import com.internet.shop.service.ProductService;
-import com.internet.shop.service.ShoppingCartService;
-import com.internet.shop.service.UserService;
+import com.internet.shop.service.interfaces.OrderService;
+import com.internet.shop.service.interfaces.ProductService;
+import com.internet.shop.service.interfaces.ShoppingCartService;
+import com.internet.shop.service.interfaces.UserService;
 
 public class Main {
     private static Injector injector = Injector.getInstance("com.internet.shop");
@@ -70,7 +70,7 @@ public class Main {
         Storage.shoppingCarts.forEach(System.out::println);
 
         System.out.println("get ID by User#3");
-        System.out.println(shoppingCartService.getByUserId(user3.getId()));
+        System.out.println(shoppingCartService.getById(user3.getId()));
 
         System.out.println("delete Cart ID #2");
         shoppingCartService.delete(shoppingCartUser3);
@@ -90,14 +90,14 @@ public class Main {
         System.out.println(orderService.getUserOrders(user2.getId()));
 
         System.out.println("get User#2 order by ID");
-        System.out.println(orderService.get(user2.getId()));
+        System.out.println(orderService.getById(user2.getId()));
 
         System.out.println("get All orders");
         orderService.getAll();
         Storage.orders.forEach(System.out::println);
 
         System.out.println("del order by ID");
-        orderService.delete(user2.getId());
+        orderService.deleteById(user2.getId());
         Storage.orders.forEach(System.out::println);
     }
 }
