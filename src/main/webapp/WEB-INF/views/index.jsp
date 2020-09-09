@@ -9,13 +9,13 @@
     <a href="${pageContext.request.contextPath}/registration">REGISTRATION</a>
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/">Add item</a>
+    <a href="${pageContext.request.contextPath}/item/add">Add item</a>
 </p>
 <p>
     <a href="${pageContext.request.contextPath}/users/all">Show all users</a>
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/">Show all item</a>
+    <a href="${pageContext.request.contextPath}/items/all">Show all item</a>
 </p>
 <p>
     <a href="${pageContext.request.contextPath}/">Show bucket</a>

@@ -1,10 +1,8 @@
 package com.internet.shop.controllers;
 
-import com.internet.shop.database.Storage;
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.UserService;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegistrationController extends HttpServlet {
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -27,7 +26,6 @@ public class RegistrationController extends HttpServlet {
         Long phone = Long.valueOf(phoneString);
         String password = req.getParameter("pwd");
         String repeatPassword = req.getParameter("pwd-repeat");
-
 
         if (password.equals(repeatPassword)) {
             userService.create(new User(name,surname,email,phone,login,password));
