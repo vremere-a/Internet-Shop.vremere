@@ -1,5 +1,10 @@
 package com.internet.shop.controllers;
 
+import com.internet.shop.database.Storage;
+import com.internet.shop.library.Injector;
+import com.internet.shop.model.User;
+import com.internet.shop.service.interfaces.UserService;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,16 +14,23 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/registration")
 public class RegistrationController extends HttpServlet {
-
+    private static Injector injector = Injector.getInstance("com.internet.shop");
+    private UserService userService = (UserService) injector.getInstance(UserService.class);
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        String login = req.getParameter("login");
         String name = req.getParameter("name");
+        String surname = req.getParameter("surname");
+        String email = req.getParameter("email");
         String password = req.getParameter("pwd");
         String repeatPassword = req.getParameter("pwd-repeat");
 
+
         if (password.equals(repeatPassword)) {
-            resp.sendRedirect(req.getContextPath() + "/InjectData");
+            userService.create(new User(name,login,password));
+            resp.sendRedirect(req.getContextPath() + "/users/all");
+
         } else {
             req.setAttribute("message", "Your password and repeat password aren't the same.");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req,resp);
