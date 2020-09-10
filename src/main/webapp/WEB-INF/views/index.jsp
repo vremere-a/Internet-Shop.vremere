@@ -26,6 +26,8 @@
 <p>
     <a href="${pageContext.request.contextPath}/orders/all">Show user ORDER</a>
 </p>
-
+<p>
+    <a href="${pageContext.request.contextPath}/admin/orders/all">Show all ORDERS (Admin)</a>
+</p>
 </body>
 </html>

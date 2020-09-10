@@ -5,7 +5,7 @@
          version="3.1">
 <!--    <servlet>-->
 <!--        <servlet-name>index</servlet-name>-->
-<!--        <servlet-class>com.internet.shop.controllers.IndexController</servlet-class>-->
+<!--        <servlet-class>com.internet.shop.controllers.inject.IndexController</servlet-class>-->
 <!--    </servlet>-->
 <!--    <servlet-mapping>-->
 <!--        <servlet-name>index</servlet-name>-->
@@ -21,7 +21,7 @@
 <!--    </servlet-mapping>-->
 <!--    <servlet>-->
 <!--        <servlet-name>registration</servlet-name>-->
-<!--        <servlet-class>com.internet.shop.controllers.RegistrationController</servlet-class>-->
+<!--        <servlet-class>com.internet.shop.controllers.user.AddNewUserController</servlet-class>-->
 <!--    </servlet>-->
 <!--    <servlet-mapping>-->
 <!--        <servlet-name>registration</servlet-name>-->
@@ -29,7 +29,7 @@
 <!--    </servlet-mapping>-->
 <!--    <servlet>-->
 <!--        <servlet-name>injectData</servlet-name>-->
-<!--        <servlet-class>com.internet.shop.controllers.InjectDataController</servlet-class>-->
+<!--        <servlet-class>com.internet.shop.controllers.inject.InjectDataController</servlet-class>-->
 <!--    </servlet>-->
 <!--    <servlet-mapping>-->
 <!--        <servlet-name>injectData</servlet-name>-->

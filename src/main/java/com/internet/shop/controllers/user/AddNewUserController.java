@@ -1,4 +1,4 @@
-package com.internet.shop.controllers;
+package com.internet.shop.controllers.user;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.ShoppingCart;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/registration")
-public class RegistrationController extends HttpServlet {
+public class AddNewUserController extends HttpServlet {
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
     private ShoppingCartService shoppingCartService
