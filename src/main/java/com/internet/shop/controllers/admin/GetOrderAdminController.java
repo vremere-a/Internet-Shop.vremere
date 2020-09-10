@@ -2,17 +2,15 @@ package com.internet.shop.controllers.admin;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Order;
-import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.OrderService;
 import com.internet.shop.service.interfaces.UserService;
-
+import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/admin/orders/all")
 public class GetOrderAdminController extends HttpServlet {
