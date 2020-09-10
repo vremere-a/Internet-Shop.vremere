@@ -12,13 +12,13 @@
     <a href="${pageContext.request.contextPath}/registration">REGISTRATION</a>
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/item/add">Add item</a>
+    <a href="${pageContext.request.contextPath}/product/add">Add item</a>
 </p>
 <p>
     <a href="${pageContext.request.contextPath}/users/all">Show all users</a>
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/items/all">Show all item</a>
+    <a href="${pageContext.request.contextPath}/products/all">Show all item</a>
 </p>
 <p>
     <a href="${pageContext.request.contextPath}/shopping-cart/products/add">Show bucket</a>
