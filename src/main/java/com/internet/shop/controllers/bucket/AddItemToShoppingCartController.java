@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/item/add/bucket")
-public class AddItemToBucketController extends HttpServlet {
+public class AddItemToShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private ShoppingCartService shoppingCartService =
@@ -30,7 +30,7 @@ public class AddItemToBucketController extends HttpServlet {
         Long id = Long.valueOf(userId);
         Product product = productService.getById(id);
         shoppingCartService.addProduct(shoppingCart,product);
-        resp.sendRedirect(req.getContextPath() + "/all/items/bucket");
+        resp.sendRedirect(req.getContextPath() + "/shopping-cart/products/add");
     }
 
 }
