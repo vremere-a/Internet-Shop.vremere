@@ -14,6 +14,9 @@
     </p>
     <button type="submit">Add item</button>
     <p>
+        <a href="${pageContext.request.contextPath}/items/all">show all items</a>
+    </p>
+    <p>
         <a href="${pageContext.request.contextPath}/">back to main page</a>
     </p>
 </form>

@@ -1,4 +1,4 @@
-package com.internet.shop.controllers;
+package com.internet.shop.controllers.user;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.User;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/users/all")
-public class UsersController extends HttpServlet {
-    private static Injector injector = Injector.getInstance("com.internet.shop");
-    private UserService userService = (UserService) injector.getInstance(UserService.class);
+public class GetAllUsersController extends HttpServlet {
+    private static final Injector injector = Injector.getInstance("com.internet.shop");
+    private final UserService userService = (UserService) injector.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

@@ -6,6 +6,9 @@
 <body>
 <h1>MAIN PAGE</h1>
 <p>
+    <a href="${pageContext.request.contextPath}/inject-data">Inject test data into the DB</a>
+</p>
+<p>
     <a href="${pageContext.request.contextPath}/registration">REGISTRATION</a>
 </p>
 <p>
@@ -18,7 +21,8 @@
     <a href="${pageContext.request.contextPath}/items/all">Show all item</a>
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/">Show bucket</a>
+    <a href="${pageContext.request.contextPath}/all/items/bucket">Show bucket</a>
 </p>
+
 </body>
 </html>

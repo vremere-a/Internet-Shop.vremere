@@ -1,7 +1,9 @@
 package com.internet.shop.controllers;
 
 import com.internet.shop.library.Injector;
+import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.model.User;
+import com.internet.shop.service.interfaces.ShoppingCartService;
 import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 public class RegistrationController extends HttpServlet {
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
+    private ShoppingCartService shoppingCartService
+            = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -27,9 +31,17 @@ public class RegistrationController extends HttpServlet {
         String password = req.getParameter("pwd");
         String repeatPassword = req.getParameter("pwd-repeat");
 
-        if (password.equals(repeatPassword)) {
-            userService.create(new User(name,surname,email,phone,login,password));
-            resp.sendRedirect(req.getContextPath() + "/");
+        if (password.equals(repeatPassword)
+                && login.length() != 0
+                && name.length() != 0
+                && surname.length() != 0
+                && email.length() != 0
+                && phone > 0L) {
+            User user = new User(name,surname,email,phone,login,password);
+            userService.create(user);
+            ShoppingCart shoppingCart = new ShoppingCart(user.getId());
+            shoppingCartService.create(shoppingCart);
+            resp.sendRedirect(req.getContextPath() + "/users/all");
 
         } else {
             req.setAttribute("message", "Your password and repeat password aren't the same.");

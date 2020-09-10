@@ -1,4 +1,4 @@
-package com.internet.shop.controllers;
+package com.internet.shop.controllers.item;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
@@ -30,6 +30,6 @@ public class AddItemController extends HttpServlet {
         String priceString = req.getParameter("price");
         double price = Double.parseDouble(priceString);
         productService.create(new Product(name,price));
-        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/item/add");
     }
 }

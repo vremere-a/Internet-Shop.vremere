@@ -15,6 +15,7 @@
         <td>E-mail</td>
         <td>Phone</td>
         <td>Login</td>
+        <td>Delete</td>
 
     </tr>
     <c:forEach var="user" items="${users}">

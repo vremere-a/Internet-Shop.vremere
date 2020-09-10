@@ -9,25 +9,25 @@
 <h4 style="color: red">${message}</h4>
 <form method="post" action="${pageContext.request.contextPath}/registration">
     <p>
-        <input type="text" name="name"> please, provide your name.
+        <input type="text" placeholder="Name" name="name"> enter your name
     </p>
     <p>
-        <input type="text" name="surname"> please, provide your surname.
+        <input type="text" placeholder="Surname" name="surname"> enter your surname
     </p>
     <p>
-        <input type="text" name="email"> please, provide your e-mail.
+        <input type="text" placeholder="E-mail" name="email"> enter your e-mail.
     </p>
     <p>
-        <input type="text" name="phone"> please, provide your phone number.
+        <input type="text" placeholder="Phone" name="phone"> enter your phone number.
     </p>
     <p>
-        <input type="text" name="login"> please, provide your login.
+        <input type="text" placeholder="Login" name="login"> enter your login.
     </p>
     <p>
-        <input type="password" name="pwd"> please, provide your password.
+        <input type="password" placeholder="Password" name="pwd"> enter your password.
     </p>
     <p>
-        <input type="password" name="pwd-repeat"> please, repeat your password.
+        <input type="password" placeholder="Password" name="pwd-repeat"> please, repeat your password.
     </p>
     <button type="submit">Register</button>
     <p>
