@@ -6,39 +6,42 @@
 </head>
 <body>
 <form method="get" action="${pageContext.request.contextPath}/checkout/order">
-<h2>ITEMS IN YOUR BUCKET</h2>
-<table border="1">
-    <tr>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Price</td>
-        <td>Delete</td>
-
-    </tr>
-    <c:forEach var="product" items="${products}">
+    <h2>ITEMS IN YOUR BUCKET</h2>
+    <table border="1">
         <tr>
-            <td>
-                <c:out value="${product.id}"/>
-            </td>
-            <td>
-                <c:out value="${product.name}"/>
-            </td>
-            <td>
-                <c:out value="${product.price}"/>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/shopping-cart/products/del?id=${product.id}">Delete</a>
-            </td>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Delete</td>
+
         </tr>
-    </c:forEach>
+        <c:forEach var="product" items="${products}">
+            <tr>
+                <td>
+                    <c:out value="${product.id}"/>
+                </td>
+                <td>
+                    <c:out value="${product.name}"/>
+                </td>
+                <td>
+                    <c:out value="${product.price}"/>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/shopping-cart/products/del?id=${product.id}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+
+    </table>
+
+    <button type="submit">checkout</button>
     <p>
         <a href="${pageContext.request.contextPath}/products/all">back to all items page</a>
     </p>
-</table>
-    <button type="submit">checkout</button>
-<p>
-    <a href="${pageContext.request.contextPath}/">back to main page</a>
-</p>
+
+    <p>
+        <a href="${pageContext.request.contextPath}/">back to main page</a>
+    </p>
 
 </form>
 </body>

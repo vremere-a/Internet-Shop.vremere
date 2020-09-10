@@ -29,7 +29,7 @@ public class GetOrderAdminController extends HttpServlet {
 
         List<Order> orders = orderService.getAll();
         req.setAttribute("orders", orders);
-        req.getRequestDispatcher("/WEB-INF/views/orders/allAdmin.jsp")
+        req.getRequestDispatcher("/WEB-INF/views/admin/allOrdersAdmin.jsp")
                 .forward(req, resp);
     }
 }

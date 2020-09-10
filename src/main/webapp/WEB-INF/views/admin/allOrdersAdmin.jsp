@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h2>ALL USERS ORDERS LIST</h2>
+<h2>ALL USERS ORDERS LIST (ADMIN)</h2>
 <table border="1">
     <tr>
         <td>User ID</td>

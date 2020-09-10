@@ -1,16 +1,19 @@
-package com.internet.shop.controllers.product;
+package com.internet.shop.controllers.admin;
 
 import com.internet.shop.library.Injector;
+import com.internet.shop.model.Product;
 import com.internet.shop.service.interfaces.ProductService;
-import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/products/delete")
-public class DeleteProductController extends HttpServlet {
+@WebServlet("/products/all/admin")
+public class GetAllProductsAdminController extends HttpServlet {
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -18,9 +21,10 @@ public class DeleteProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String userId = req.getParameter("id");
-        Long id = Long.valueOf(userId);
-        productService.deleteById(id);
-        resp.sendRedirect(req.getContextPath() + "/products/all/admin");
+
+        List<Product> allProducts = productService.getAll();
+        req.setAttribute("products", allProducts);
+        req.getRequestDispatcher("/WEB-INF/views/admin/allProductsAdmin.jsp")
+                .forward(req, resp);
     }
 }
