@@ -5,33 +5,26 @@
     <title>Title</title>
 </head>
 <body>
-<h2>YOUR ORDERS LIST</h2>
+<h2>DETAIL ORDER</h2>
 <table border="1">
     <tr>
-        <td>Order ID</td>
-        <td>Items</td>
-        <td>Details</td>
-        <td>Delete order</td>
-
+        <td>Item ID</td>
+        <td>Item name</td>
+        <td>Item Price</td>
     </tr>
-    <c:forEach var="order" items="${orders}">
-        <tr>
+        <c:forEach var="product" items="${order.products}">
+    <tr>
             <td>
-                <c:out value="${order.id}"/>
-            </td>
-
-            <td>
-                <c:out value="${orders}" />
-            </td>
-
-            <td>
-                <a href="${pageContext.request.contextPath}/orders/all/details?id=${order.id}">Details</a>
+                <c:out value="${product.id}" />
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/order/delete?id=${order.id}">Delete</a>
+                <c:out value="${product.name}" />
             </td>
+            <td>
+                <c:out value="${product.price}" />
+            </td>
+        </c:forEach>
         </tr>
-    </c:forEach>
     <p>
         <a href="${pageContext.request.contextPath}/products/all">back to all items page</a>
     </p>
