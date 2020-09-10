@@ -1,4 +1,4 @@
-package com.internet.shop.controllers.bucket;
+package com.internet.shop.controllers.cart;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/all/items/bucket")
+@WebServlet("/shopping-cart/products/add")
 public class GetShoppingCartController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private static final Long USER_ID = 1L;
@@ -25,7 +25,7 @@ public class GetShoppingCartController extends HttpServlet {
         ShoppingCart shoppingCart = shoppingCartService.getById(USER_ID);
         List<Product> products = shoppingCart.getProducts();
         request.setAttribute("products", products);
-        request.getRequestDispatcher("/WEB-INF/views/bucket/all.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/cart/all.jsp")
                 .forward(request, response);
     }
 }

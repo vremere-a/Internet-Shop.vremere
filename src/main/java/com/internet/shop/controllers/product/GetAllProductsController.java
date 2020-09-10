@@ -1,4 +1,4 @@
-package com.internet.shop.controllers.item;
+package com.internet.shop.controllers.product;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/items/all")
-public class GetAllItemsController extends HttpServlet {
+@WebServlet("/products/all")
+public class GetAllProductsController extends HttpServlet {
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -23,7 +23,7 @@ public class GetAllItemsController extends HttpServlet {
 
         List<Product> allProducts = productService.getAll();
         req.setAttribute("products", allProducts);
-        req.getRequestDispatcher("/WEB-INF/views/items/all.jsp")
+        req.getRequestDispatcher("/WEB-INF/views/products/all.jsp")
                 .forward(req, resp);
     }
 }

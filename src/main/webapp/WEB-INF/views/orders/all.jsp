@@ -29,7 +29,7 @@
         </tr>
     </c:forEach>
     <p>
-        <a href="${pageContext.request.contextPath}/items/all">back to all items page</a>
+        <a href="${pageContext.request.contextPath}/products/all">back to all items page</a>
     </p>
 </table>
 <p>
