@@ -35,9 +35,6 @@
         <a href="${pageContext.request.contextPath}/products/all">back to all items page</a>
     </p>
 </table>
-<%--<p>--%>
-<%--    <a href="${pageContext.request.contextPath}/checkout/order">checkout</a>--%>
-<%--</p>--%>
     <button type="submit">checkout</button>
 <p>
     <a href="${pageContext.request.contextPath}/">back to main page</a>
