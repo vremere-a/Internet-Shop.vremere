@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin/orders")
-public class GetOrderAdminController extends HttpServlet {
+public class GetAllOrdersAdminController extends HttpServlet {
     private static Injector injector =
             Injector.getInstance("com.internet.shop");
     private OrderService orderService =
