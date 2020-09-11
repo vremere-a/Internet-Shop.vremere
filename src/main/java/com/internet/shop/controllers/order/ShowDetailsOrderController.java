@@ -2,11 +2,9 @@ package com.internet.shop.controllers.order;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Order;
-import com.internet.shop.model.Product;
 import com.internet.shop.service.interfaces.OrderService;
 import com.internet.shop.service.interfaces.ProductService;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,8 +26,6 @@ public class ShowDetailsOrderController extends HttpServlet {
         long orderId = Long.parseLong(id);
         Order order = orderService.getById(orderId);
         req.setAttribute("order", order);
-        List<Product> allProducts = productService.getAll();
-        req.setAttribute("products", allProducts);
         req.getRequestDispatcher("/WEB-INF/views/orders/detailOrder.jsp").forward(req, resp);
     }
 }

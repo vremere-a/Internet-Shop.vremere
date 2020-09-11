@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/shopping-cart/products/del")
+@WebServlet("/shopping-cart/products/delete")
 public class DeleteProductsFromShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static Injector injector = Injector.getInstance("com.internet.shop");
