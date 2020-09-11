@@ -23,7 +23,6 @@ public class GetCheckoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
         orderService.completeOrder(shoppingCart);
         resp.sendRedirect(req.getContextPath() + "/orders/all");

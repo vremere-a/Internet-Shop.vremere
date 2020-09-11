@@ -13,7 +13,6 @@
         <td>Items</td>
         <td>Details</td>
         <td>Delete order</td>
-
     </tr>
     <c:forEach var="order" items="${orders}">
         <tr>

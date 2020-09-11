@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h2>DETAIL ORDER</h2>
+<h2>DETAILS ORDER</h2>
 <table border="1">
     <tr>
         <td>Item ID</td>

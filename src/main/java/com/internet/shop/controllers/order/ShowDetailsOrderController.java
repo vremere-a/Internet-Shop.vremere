@@ -24,14 +24,12 @@ public class ShowDetailsOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
         String id = req.getParameter("id");
         long orderId = Long.parseLong(id);
         Order order = orderService.getById(orderId);
         req.setAttribute("order", order);
         List<Product> allProducts = productService.getAll();
         req.setAttribute("products", allProducts);
-        req.getRequestDispatcher("/WEB-INF/views/orders/detailOrder.jsp")
-                .forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/orders/detailOrder.jsp").forward(req, resp);
     }
 }
