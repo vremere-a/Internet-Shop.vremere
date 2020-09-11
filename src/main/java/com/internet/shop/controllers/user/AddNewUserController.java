@@ -31,20 +31,17 @@ public class AddNewUserController extends HttpServlet {
         String password = req.getParameter("pwd");
         String repeatPassword = req.getParameter("pwd-repeat");
 
-        if (password.equals(repeatPassword)
-                && login.length() != 0
-                && name.length() != 0
-                && surname.length() != 0
-                && email.length() != 0
-                && phone > 0L) {
-            User user = new User(name, surname, email, phone, login, password);
+        if (password.equals(repeatPassword) && login.length() != 0
+                && name.length() != 0 && surname.length() != 0
+                && email.length() != 0 && phone > 0L) {
+            User user = new User(name,surname,email,phone,login,password);
             userService.create(user);
             ShoppingCart shoppingCart = new ShoppingCart(user.getId());
             shoppingCartService.create(shoppingCart);
             resp.sendRedirect(req.getContextPath() + "/users/all");
         } else {
-            req.setAttribute("message", "Your password and repeat password aren't the same.");
-            req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            req.setAttribute("message", "You have entered invalid data.");
+            req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req,resp);
         }
     }
 
