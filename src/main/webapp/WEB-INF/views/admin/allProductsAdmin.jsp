@@ -32,7 +32,7 @@
     </c:forEach>
 </table>
 <p>
-    <a href="${pageContext.request.contextPath}/products/all">back to all items page</a>
+    <a href="${pageContext.request.contextPath}/products">back to all items page</a>
 </p>
 <p>
     <a href="${pageContext.request.contextPath}/">back to main page</a>

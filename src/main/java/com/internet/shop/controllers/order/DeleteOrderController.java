@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/order/delete")
+@WebServlet("/orders/delete")
 public class DeleteOrderController extends HttpServlet {
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private OrderService orderService =
@@ -21,6 +21,6 @@ public class DeleteOrderController extends HttpServlet {
         String userId = req.getParameter("id");
         Long id = Long.valueOf(userId);
         orderService.deleteById(id);
-        resp.sendRedirect(req.getContextPath() + "/orders/all");
+        resp.sendRedirect(req.getContextPath() + "/orders");
     }
 }

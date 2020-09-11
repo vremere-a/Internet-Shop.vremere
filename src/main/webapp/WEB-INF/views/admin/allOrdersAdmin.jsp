@@ -27,16 +27,16 @@
                 <c:out value="${orders}" />
             </td><br>
             <td>
-                <a href="${pageContext.request.contextPath}/orders/all/details?id=${order.id}">Details</a>
+                <a href="${pageContext.request.contextPath}/orders/details?id=${order.id}">Details</a>
             </td>
 
             <td>
-                <a href="${pageContext.request.contextPath}/order/delete?id=${order.id}">Delete</a>
+                <a href="${pageContext.request.contextPath}/orders/delete?id=${order.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>
     <p>
-        <a href="${pageContext.request.contextPath}/products/all">back to all items page</a>
+        <a href="${pageContext.request.contextPath}/products">back to all items page</a>
     </p>
 </table>
 <p>

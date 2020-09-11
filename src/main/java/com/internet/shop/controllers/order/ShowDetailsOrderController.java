@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/orders/all/details")
+@WebServlet("/orders/details")
 public class ShowDetailsOrderController extends HttpServlet {
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private OrderService orderService =

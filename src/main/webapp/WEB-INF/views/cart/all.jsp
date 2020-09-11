@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="get" action="${pageContext.request.contextPath}/checkout/order">
+<form method="get" action="${pageContext.request.contextPath}/orders/add">
     <h2>ITEMS IN YOUR BUCKET</h2>
     <table border="1">
         <tr>
@@ -36,7 +36,7 @@
 
     <button type="submit">checkout</button>
     <p>
-        <a href="${pageContext.request.contextPath}/products/all">back to all items page</a>
+        <a href="${pageContext.request.contextPath}/products">back to all items page</a>
     </p>
 
     <p>
