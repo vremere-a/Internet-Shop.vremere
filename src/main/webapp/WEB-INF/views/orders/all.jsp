@@ -22,7 +22,9 @@
         <c:forEach var="order" items="${orders}">
     <tr>
         <td>
-            <c:out value="${order.id}"/>
+            <p class="text-center">
+                <c:out value="${order.id}"/>
+            </p>
         </td>
         <td>
             <p class="text-center">
