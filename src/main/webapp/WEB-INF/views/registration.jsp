@@ -7,6 +7,7 @@
 <h1>USER REGISTRATION</h1>
 
 <h4 style="color: red">${message}</h4>
+
 <form method="post" action="${pageContext.request.contextPath}/registration">
     <p>
         <input type="text" placeholder="Name" name="name"> enter your name
