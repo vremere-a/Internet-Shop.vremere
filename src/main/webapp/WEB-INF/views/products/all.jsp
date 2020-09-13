@@ -47,7 +47,7 @@
     </tbody>
 </table>
 <p>
-    <a href="${pageContext.request.contextPath}/">back to main page</a>
+    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to main page</a>
 </p>
 
 </body>

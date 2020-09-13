@@ -9,6 +9,10 @@
 <body>
 <form method="get" action="${pageContext.request.contextPath}/orders/add">
     <h2>ITEMS IN YOUR BUCKET</h2>
+    <p>
+        <a href="${pageContext.request.contextPath}/products" class="btn btn-info" role="button"
+           aria-pressed="true">back to all items page</a>
+    </p>
     <table class="table table-dark">
         <thead>
         <tr>
@@ -48,13 +52,12 @@
         </tr>
         </tbody>
     </table>
-    <button type="submit">checkout</button>
     <p>
-        <a href="${pageContext.request.contextPath}/products">back to all items page</a>
+    <button type="submit" class="btn btn-primary">checkout</button>
     </p>
-
     <p>
-        <a href="${pageContext.request.contextPath}/">back to main page</a>
+        <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
+            main page</a>
     </p>
 
 </form>

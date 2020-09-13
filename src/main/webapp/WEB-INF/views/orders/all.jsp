@@ -8,6 +8,10 @@
 </head>
 <body>
 <h2>YOUR ORDERS LIST</h2>
+<p>
+    <a href="${pageContext.request.contextPath}/products" class="btn btn-info" role="button" aria-pressed="true">back to
+        all items page</a>
+</p>
 <table class="table table-dark">
     <thead>
     <tr>
@@ -47,10 +51,8 @@
     </tbody>
 </table>
 <p>
-    <a href="${pageContext.request.contextPath}/products">back to all items page</a>
-</p>
-<p>
-    <a href="${pageContext.request.contextPath}/">back to main page</a>
+    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
+        main page</a>
 </p>
 </body>
 </html>
