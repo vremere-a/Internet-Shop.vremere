@@ -5,4 +5,6 @@ import com.internet.shop.model.User;
 public interface UserService extends GenericService<User, Long> {
 
     User update(User user);
+
+    User findByLogin(String login);
 }
