@@ -6,6 +6,7 @@ import com.internet.shop.library.Service;
 import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.UserService;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -33,8 +34,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByLogin(String login) {
-        return userDao.findByLogin(login).get();
+    public Optional<User> findByLogin(String login) {
+        return userDao.findByLogin(login);
     }
 
     @Override

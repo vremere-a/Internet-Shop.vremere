@@ -12,6 +12,7 @@
 </head>
 <body>
 <h1>Login page</h1>
+<h4 style="color: red"> ${errorMsg} </h4>
 
 <form action="${pageContext.request.contextPath}/login" method="post">
 
