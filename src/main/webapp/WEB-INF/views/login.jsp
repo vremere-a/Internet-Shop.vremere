@@ -11,6 +11,10 @@
     </style>
 </head>
 <body>
+<p>
+    <a href="${pageContext.request.contextPath}/registration" class="btn btn-warning" role="button"
+       aria-pressed="true">REGISTRATION</a>
+</p>
 <h1>Login page</h1>
 <h4 style="color: red"> ${errorMsg} </h4>
 
