@@ -4,13 +4,13 @@ import com.internet.shop.exeptions.AuthenticationException;
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.User;
 import com.internet.shop.security.interfaces.AuthenticationService;
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
