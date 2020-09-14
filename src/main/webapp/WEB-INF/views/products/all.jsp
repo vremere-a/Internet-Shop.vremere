@@ -2,41 +2,52 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Title</title>
 </head>
 <body>
 <h2>All items page</h2>
-<table border="1">
+<table class="table table-dark">
+    <thead>
     <tr>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Price</td>
-        <td>Add</td>
-        <td>Delete</td>
-
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price,$</th>
+        <th scope="col">Buy</th>
+    </tr>
+    </thead>
+    <tbody>
     </tr>
     <c:forEach var="product" items="${products}">
         <tr>
             <td>
-                <c:out value="${product.id}"/>
+                <p class="text-center">
+                    <c:out value="${product.id}"/>
+                </p>
             </td>
             <td>
-                <c:out value="${product.name}"/>
+                <p class="text-center">
+                    <c:out value="${product.name}"/>
+                </p>
             </td>
             <td>
-                <c:out value="${product.price}"/>
+                <p class="text-center">
+                    <c:out value="${product.price}"/>
+                </p>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/products/delete?id=${product.id}">Delete</a>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/shopping-cart/products/add?id=${product.id}">Add</a>
+                <p class="text-center">
+                    <a href="${pageContext.request.contextPath}/shopping-cart/product/add?id=${product.id}">Buy</a>
+                </p>
             </td>
         </tr>
     </c:forEach>
+    </tr>
+    </tbody>
 </table>
 <p>
-    <a href="${pageContext.request.contextPath}/">back to main page</a>
+    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to main page</a>
 </p>
 
 </body>

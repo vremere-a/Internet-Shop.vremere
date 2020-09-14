@@ -1,4 +1,4 @@
-package com.internet.shop.controllers.bucket;
+package com.internet.shop.controllers.cart;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/item/add/bucket")
-public class AddItemToShoppingCartController extends HttpServlet {
+@WebServlet("/shopping-cart/product/add")
+public class AddProductToShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private ShoppingCartService shoppingCartService =
@@ -24,7 +24,6 @@ public class AddItemToShoppingCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
         String userId = req.getParameter("id");
         Long id = Long.valueOf(userId);

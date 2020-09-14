@@ -1,4 +1,4 @@
-package com.internet.shop.controllers.product;
+package com.internet.shop.controllers.admin;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/products")
-public class GetAllProductsController extends HttpServlet {
+@WebServlet("/admin/products")
+public class GetAllProductsAdminController extends HttpServlet {
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -22,6 +22,6 @@ public class GetAllProductsController extends HttpServlet {
             throws ServletException, IOException {
         List<Product> allProducts = productService.getAll();
         req.setAttribute("products", allProducts);
-        req.getRequestDispatcher("/WEB-INF/views/products/all.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/admin/allProductsAdmin.jsp").forward(req, resp);
     }
 }

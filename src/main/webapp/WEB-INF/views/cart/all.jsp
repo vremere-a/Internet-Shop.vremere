@@ -2,43 +2,63 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Title</title>
 </head>
 <body>
-<form method="get" action="${pageContext.request.contextPath}/checkout/order">
-<h2>ITEMS IN YOUR BUCKET</h2>
-<table border="1">
-    <tr>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Price</td>
-        <td>Delete</td>
-
-    </tr>
-    <c:forEach var="product" items="${products}">
-        <tr>
-            <td>
-                <c:out value="${product.id}"/>
-            </td>
-            <td>
-                <c:out value="${product.name}"/>
-            </td>
-            <td>
-                <c:out value="${product.price}"/>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/products/delete/cart?id=${product.id}">Delete</a>
-            </td>
-        </tr>
-    </c:forEach>
+<form method="get" action="${pageContext.request.contextPath}/orders/add">
+    <h2>ITEMS IN YOUR BUCKET</h2>
     <p>
-        <a href="${pageContext.request.contextPath}/products/all">back to all items page</a>
+        <a href="${pageContext.request.contextPath}/products" class="btn btn-info" role="button"
+           aria-pressed="true">back to all items page</a>
     </p>
-</table>
-    <button type="submit">checkout</button>
-<p>
-    <a href="${pageContext.request.contextPath}/">back to main page</a>
-</p>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tr>
+        <c:forEach var="product" items="${products}">
+            <tr>
+                <td>
+                    <p class="text-center">
+                        <c:out value="${product.id}"/>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-center">
+                        <c:out value="${product.name}"/>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-center">
+                        <c:out value="${product.price}"/>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-center">
+                        <a href="${pageContext.request.contextPath}/shopping-cart/products/delete?id=${product.id}">Delete</a>
+                    </p>
+                </td>
+            </tr>
+        </c:forEach>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+    <button type="submit" class="btn btn-primary">checkout</button>
+    </p>
+    <p>
+        <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
+            main page</a>
+    </p>
 
 </form>
 </body>

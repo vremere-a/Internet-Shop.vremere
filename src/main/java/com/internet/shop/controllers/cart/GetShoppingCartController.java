@@ -25,7 +25,6 @@ public class GetShoppingCartController extends HttpServlet {
         ShoppingCart shoppingCart = shoppingCartService.getById(USER_ID);
         List<Product> products = shoppingCart.getProducts();
         request.setAttribute("products", products);
-        request.getRequestDispatcher("/WEB-INF/views/cart/all.jsp")
-                .forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/cart/all.jsp").forward(request, response);
     }
 }

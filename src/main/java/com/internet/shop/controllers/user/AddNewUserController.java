@@ -1,4 +1,4 @@
-package com.internet.shop.controllers;
+package com.internet.shop.controllers.user;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.ShoppingCart;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/registration")
-public class RegistrationController extends HttpServlet {
+public class AddNewUserController extends HttpServlet {
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
     private ShoppingCartService shoppingCartService
@@ -39,7 +39,6 @@ public class RegistrationController extends HttpServlet {
             ShoppingCart shoppingCart = new ShoppingCart(user.getId());
             shoppingCartService.create(shoppingCart);
             resp.sendRedirect(req.getContextPath() + "/users/all");
-
         } else {
             req.setAttribute("message", "You have entered invalid data.");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req,resp);
@@ -49,7 +48,6 @@ public class RegistrationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/registration.jsp")
-                .forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
     }
 }
