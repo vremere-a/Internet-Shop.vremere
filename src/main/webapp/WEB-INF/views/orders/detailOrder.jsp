@@ -2,35 +2,50 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Title</title>
 </head>
 <body>
 <h2>DETAILS ORDER</h2>
-<table border="1">
+<p>
+    <a href="${pageContext.request.contextPath}/products" class="btn btn-info" role="button" aria-pressed="true">back to
+        all items page</a>
+</p>
+<table class="table table-info">
+    <thead>
     <tr>
-        <td>Item ID</td>
-        <td>Item name</td>
-        <td>Item Price</td>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price,$</th>
     </tr>
-        <c:forEach var="product" items="${order.products}">
+    </thead>
+    <tbody>
+    </tr>
+    <c:forEach var="product" items="${order.products}">
     <tr>
-            <td>
-                <c:out value="${product.id}" />
-            </td>
-            <td>
-                <c:out value="${product.name}" />
-            </td>
-            <td>
-                <c:out value="${product.price}" />
-            </td>
+        <td>
+            <p class="text-center">
+                <c:out value="${product.id}"/>
+            </p>
+        </td>
+        <td>
+            <p class="text-center">
+                <c:out value="${product.name}"/>
+            </p>
+        </td>
+        <td>
+            <p class="text-center">
+                <c:out value="${product.price}"/>
+            </p>
+        </td>
         </c:forEach>
-        </tr>
-    <p>
-        <a href="${pageContext.request.contextPath}/products">back to all items page</a>
-    </p>
+    </tr>
+    </tbody>
 </table>
 <p>
-    <a href="${pageContext.request.contextPath}/">back to main page</a>
+    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
+        main page</a>
 </p>
 
 </body>
