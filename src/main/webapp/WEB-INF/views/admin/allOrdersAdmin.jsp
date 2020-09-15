@@ -7,6 +7,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="/WEB-INF/views/index.jsp" %>
 <h2>ALL USERS ORDERS LIST (ADMIN)</h2>
 <table class="table table-danger">
     <thead>
@@ -58,10 +59,5 @@
         <a href="${pageContext.request.contextPath}/products" class="btn btn-info" role="button" aria-pressed="true">back to all items page</a>
     </p>
 </table>
-<p>
-    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
-        main page</a>
-</p>
-
 </body>
 </html>

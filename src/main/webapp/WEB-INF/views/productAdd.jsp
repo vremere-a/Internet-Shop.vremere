@@ -11,6 +11,7 @@
     </style>
 </head>
 <body>
+<%@include file="/WEB-INF/views/index.jsp" %>
 <h3>ITEM ADDING </h3>
 <p>
     <a href="${pageContext.request.contextPath}/products" class="btn btn-info" role="button" aria-pressed="true">show
@@ -29,10 +30,6 @@
     <button type="submit" class="btn btn-primary">Add product</button>
     <p>
 </form>
-<p>
-    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
-        main page</a>
-</p>
 </form>
 </body>
 </html>

@@ -6,10 +6,7 @@
     <title>Inject Data</title>
 </head>
 <body>
+<%@include file="/WEB-INF/views/index.jsp" %>
 <h2>Your mock data was added to DB</h2>
-<p>
-    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
-        main page</a>
-</p>
 </body>
 </html>

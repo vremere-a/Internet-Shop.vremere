@@ -7,6 +7,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="/WEB-INF/views/index.jsp" %>
 <form method="get" action="${pageContext.request.contextPath}/orders/add">
     <h2>ITEMS IN YOUR BUCKET</h2>
     <p>
@@ -54,10 +55,6 @@
     </table>
     <p>
     <button type="submit" class="btn btn-primary">checkout</button>
-    </p>
-    <p>
-        <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
-            main page</a>
     </p>
 
 </form>
