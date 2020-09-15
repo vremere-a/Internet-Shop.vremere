@@ -45,6 +45,9 @@
         <a class="nav-link active" href="${pageContext.request.contextPath}/inject-data">Inject</a>
     </li>
     <li class="nav-item">
+        <a class="nav-link alert-dark" href="${pageContext.request.contextPath}/login">REGISTRATION</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link active" href="${pageContext.request.contextPath}/login">Login</a>
     </li>
 </ul>

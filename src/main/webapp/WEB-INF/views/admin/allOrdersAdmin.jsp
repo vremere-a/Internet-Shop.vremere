@@ -35,7 +35,7 @@
 
         <td>
             <p class="text-center">
-                <c:out value="${orders}"/>
+                <c:out value="${order.products}"/>
             </p>
         </td>
         <br>

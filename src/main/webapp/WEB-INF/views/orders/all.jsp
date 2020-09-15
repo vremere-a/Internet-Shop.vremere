@@ -7,6 +7,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="/WEB-INF/views/index.jsp" %>
 <h2>YOUR ORDERS LIST</h2>
 <p>
     <a href="${pageContext.request.contextPath}/products" class="btn btn-info" role="button" aria-pressed="true">back to
