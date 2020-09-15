@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public class GetShoppingCartController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private static final String USER_ID = "user_id";
-//    private static final Long USER_ID = 1L;
     private static ShoppingCartService shoppingCartService =
             (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 

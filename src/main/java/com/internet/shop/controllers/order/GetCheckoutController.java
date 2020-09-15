@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/orders/add")
 public class GetCheckoutController extends HttpServlet {
-//    private static final Long USER_ID = 1L;
     private static final String USER_ID = "user_id";
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private OrderService orderService =
