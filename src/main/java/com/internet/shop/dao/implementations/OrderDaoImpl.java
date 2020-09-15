@@ -20,7 +20,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public Optional<Order> getById(Long id) {
         return getAll().stream()
-                .filter(order -> order.getUserId().equals(id))
+                .filter(order -> order.getId().equals(id))
                 .findFirst();
     }
 
