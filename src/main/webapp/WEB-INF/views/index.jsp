@@ -37,8 +37,8 @@
            href="#" role="button" aria-haspopup="true"
            aria-expanded="false">SHOW(ADMIN)</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/orders">USER</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/products">PRODUCT</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/orders">VIEW ORDERS</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/products">MANAGE PRODUCTS</a>
         </div>
     </li>
     <li class="nav-item">
