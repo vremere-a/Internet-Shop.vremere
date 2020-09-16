@@ -44,7 +44,10 @@
     </tr>
     </tbody>
 </table>
-
+<p>
+    <a href="${pageContext.request.contextPath}/orders" class="btn btn-info" role="button" aria-pressed="true">back to
+        orders</a>
+</p>
 
 </body>
 </html>

@@ -31,7 +31,7 @@ public class AuthorizationFilter implements Filter {
         protectedUrls.put("/admin/orders", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/admin/products", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products/add", Set.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/orders/delete", Set.of(Role.RoleName.ADMIN));
+        protectedUrls.put("/orders/delete", Set.of(Role.RoleName.USER));
         protectedUrls.put("/shopping-cart/products/delete", Set.of(Role.RoleName.USER));
         protectedUrls.put("/shopping-cart/product/add", Set.of(Role.RoleName.USER));
         protectedUrls.put("/shopping-cart/products/add", Set.of(Role.RoleName.USER));
@@ -55,7 +55,6 @@ public class AuthorizationFilter implements Filter {
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         User user = userService.getById(userId);
         if (isAuthorized(user, protectedUrls.get(reqUrl))) {
-
             chain.doFilter(req, resp);
         } else {
             req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").forward(req, resp);

@@ -42,6 +42,8 @@ public class InjectDataController extends HttpServlet {
                 "1");
         tom.setRoles(Set.of(Role.of("USER")));
         userService.create(tom);
+        ShoppingCart shoppingCartTom = new ShoppingCart(tom.getId());
+        shoppingCartService.create(shoppingCartTom);
         User admin = new User(
                 "admin",
                 "admin",
@@ -50,8 +52,8 @@ public class InjectDataController extends HttpServlet {
                 "2");
         admin.setRoles(Set.of(Role.of("ADMIN")));
         userService.create(admin);
-        shoppingCartService.create(new ShoppingCart(1L));
-        shoppingCartService.create(new ShoppingCart(2L));
+        ShoppingCart shoppingCartAdmin = new ShoppingCart(admin.getId());
+        shoppingCartService.create(shoppingCartAdmin);
         req.getRequestDispatcher("/WEB-INF/views/injectData.jsp").forward(req, resp);
     }
 }
