@@ -42,10 +42,13 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link alert-dark" href="${pageContext.request.contextPath}/registration">REGISTRATION</a>
+        <a class="nav-link alert-info" href="${pageContext.request.contextPath}/registration">REGISTRATION</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="${pageContext.request.contextPath}/login">Login</a>
+        <a class="nav-link alert-success" href="${pageContext.request.contextPath}/login">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link alert-danger" href="${pageContext.request.contextPath}/logout">Logout</a>
     </li>
     <li class="nav-item">
         <a class="nav-link active" href="${pageContext.request.contextPath}/inject-data">Inject</a>

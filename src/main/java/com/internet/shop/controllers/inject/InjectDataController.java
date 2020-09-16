@@ -36,22 +36,22 @@ public class InjectDataController extends HttpServlet {
                 "Scott",
                 "sobaka@ukr.net",
                 80501443322L,
-                "tom-s",
-                "123");
+                "tom",
+                "1");
         User tim = new User(
                 "Tim",
                 "Jason",
                 "jason@ukr.net",
                 80501443311L,
-                "tim-j",
-                "321");
+                "tim",
+                "2");
         User ted = new User(
                 "Ted",
                 "Lee",
                 "lee@ukr.net",
                 80501443355L,
-                "ted-l",
-                "111");
+                "ted",
+                "3");
         userService.create(tom);
         userService.create(tim);
         userService.create(ted);
