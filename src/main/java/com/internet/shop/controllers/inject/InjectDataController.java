@@ -2,12 +2,15 @@ package com.internet.shop.controllers.inject;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
+import com.internet.shop.model.Role;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.ProductService;
 import com.internet.shop.service.interfaces.ShoppingCartService;
 import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
+import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,33 +34,35 @@ public class InjectDataController extends HttpServlet {
         productService.create(new Product("PS4", 480.00));
         productService.create(new Product("Sega", 520.00));
         productService.create(new Product("Tetris", 300.00));
+
         User tom = new User(
                 "Tom",
                 "Scott",
                 "sobaka@ukr.net",
-                80501443322L,
                 "tom",
                 "1");
-        User tim = new User(
-                "Tim",
-                "Jason",
-                "jason@ukr.net",
-                80501443311L,
-                "tim",
-                "2");
-        User ted = new User(
-                "Ted",
-                "Lee",
-                "lee@ukr.net",
-                80501443355L,
-                "ted",
-                "3");
+//        tom.setName("Tom");
+//        tom.setSurname("Scott");
+//        tom.setEmail("sobaka@ukr.net");
+//        tom.setLogin("tom");
+//        tom.setPassword("1");
+        tom.setRoles(Set.of(Role.of("USER")));
         userService.create(tom);
-        userService.create(tim);
-        userService.create(ted);
-        shoppingCartService.create(new ShoppingCart(tom.getId()));
-        shoppingCartService.create(new ShoppingCart(tim.getId()));
-        shoppingCartService.create(new ShoppingCart(ted.getId()));
+        User admin = new User(
+                "admin",
+                "admin",
+                "jason@ukr.net",
+                "admin",
+                "2");
+//        admin.setName("admin");
+//        admin.setSurname("admin");
+//        admin.setEmail("jason@ukr.net");
+//        admin.setLogin("admin");
+//        admin.setPassword("2");
+        admin.setRoles(Set.of(Role.of("ADMIN")));
+        userService.create(admin);
+        shoppingCartService.create(new ShoppingCart(1L));
+        shoppingCartService.create(new ShoppingCart(2L));
         req.getRequestDispatcher("/WEB-INF/views/injectData.jsp").forward(req, resp);
     }
 }

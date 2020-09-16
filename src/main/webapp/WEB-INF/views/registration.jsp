@@ -33,11 +33,6 @@
         <small id="emailHelp" class="form-text text-muted"></small>
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail12">Phone</label>
-        <input type="text" class="form-check" id="exampleInputEmail12" name="phone" aria-describedby="phoneHelp">
-        <small id="phoneHelp" class="form-text text-muted"></small>
-    </div>
-    <div class="form-group">
         <label for="exampleInputEmail13">Login</label>
         <input type="text" class="form-check" id="exampleInputEmail13" name="login" aria-describedby="loginHelp">
         <small id="loginHelp" class="form-text text-muted"></small>

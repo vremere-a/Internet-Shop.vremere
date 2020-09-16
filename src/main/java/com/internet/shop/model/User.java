@@ -2,6 +2,7 @@ package com.internet.shop.model;
 
 import lombok.Data;
 import lombok.NonNull;
+import java.util.Set;
 
 @Data
 public class User {
@@ -13,9 +14,9 @@ public class User {
     @NonNull
     private String email;
     @NonNull
-    private Long phone;
-    @NonNull
     private String login;
     @NonNull
     private String password;
+
+    private Set<Role> roles;
 }
