@@ -4,6 +4,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="/WEB-INF/views/index.jsp" %>
 <h1>Sorry! Access to this page denied!</h1>
 </body>
 </html>

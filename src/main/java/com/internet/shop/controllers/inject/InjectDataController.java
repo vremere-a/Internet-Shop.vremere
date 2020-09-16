@@ -9,7 +9,6 @@ import com.internet.shop.service.interfaces.ProductService;
 import com.internet.shop.service.interfaces.ShoppingCartService;
 import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,11 +40,6 @@ public class InjectDataController extends HttpServlet {
                 "sobaka@ukr.net",
                 "tom",
                 "1");
-//        tom.setName("Tom");
-//        tom.setSurname("Scott");
-//        tom.setEmail("sobaka@ukr.net");
-//        tom.setLogin("tom");
-//        tom.setPassword("1");
         tom.setRoles(Set.of(Role.of("USER")));
         userService.create(tom);
         User admin = new User(
@@ -54,11 +48,6 @@ public class InjectDataController extends HttpServlet {
                 "jason@ukr.net",
                 "admin",
                 "2");
-//        admin.setName("admin");
-//        admin.setSurname("admin");
-//        admin.setEmail("jason@ukr.net");
-//        admin.setLogin("admin");
-//        admin.setPassword("2");
         admin.setRoles(Set.of(Role.of("ADMIN")));
         userService.create(admin);
         shoppingCartService.create(new ShoppingCart(1L));

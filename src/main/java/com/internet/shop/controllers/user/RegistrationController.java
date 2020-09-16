@@ -7,7 +7,6 @@ import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.ShoppingCartService;
 import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +32,7 @@ public class RegistrationController extends HttpServlet {
         String repeatPassword = req.getParameter("pwd-repeat");
 
         if (password.equals(repeatPassword)) {
-            User user = new User(name,surname,email,login,password);
+            User user = new User(name, surname, email, login, password);
             user.setRoles(Set.of(Role.of("USER")));
             userService.create(user);
             ShoppingCart shoppingCart = new ShoppingCart(user.getId());
@@ -41,7 +40,7 @@ public class RegistrationController extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
             req.setAttribute("message", "You have entered invalid data.");
-            req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req,resp);
+            req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
         }
     }
 
