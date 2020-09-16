@@ -2,12 +2,14 @@ package com.internet.shop.controllers.inject;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
+import com.internet.shop.model.Role;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.ProductService;
 import com.internet.shop.service.interfaces.ShoppingCartService;
 import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,33 +33,27 @@ public class InjectDataController extends HttpServlet {
         productService.create(new Product("PS4", 480.00));
         productService.create(new Product("Sega", 520.00));
         productService.create(new Product("Tetris", 300.00));
+
         User tom = new User(
                 "Tom",
                 "Scott",
                 "sobaka@ukr.net",
-                80501443322L,
-                "tom-s",
-                "123");
-        User tim = new User(
-                "Tim",
-                "Jason",
-                "jason@ukr.net",
-                80501443311L,
-                "tim-j",
-                "321");
-        User ted = new User(
-                "Ted",
-                "Lee",
-                "lee@ukr.net",
-                80501443355L,
-                "ted-l",
-                "111");
+                "tom",
+                "1");
+        tom.setRoles(Set.of(Role.of("USER")));
         userService.create(tom);
-        userService.create(tim);
-        userService.create(ted);
-        shoppingCartService.create(new ShoppingCart(tom.getId()));
-        shoppingCartService.create(new ShoppingCart(tim.getId()));
-        shoppingCartService.create(new ShoppingCart(ted.getId()));
+        ShoppingCart shoppingCartTom = new ShoppingCart(tom.getId());
+        shoppingCartService.create(shoppingCartTom);
+        User admin = new User(
+                "admin",
+                "admin",
+                "jason@ukr.net",
+                "admin",
+                "2");
+        admin.setRoles(Set.of(Role.of("ADMIN")));
+        userService.create(admin);
+        ShoppingCart shoppingCartAdmin = new ShoppingCart(admin.getId());
+        shoppingCartService.create(shoppingCartAdmin);
         req.getRequestDispatcher("/WEB-INF/views/injectData.jsp").forward(req, resp);
     }
 }

@@ -12,21 +12,12 @@
 </head>
 <body>
 <ul class="nav nav-pills nav-justified">
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown"
-           href="#" role="button" aria-haspopup="true"
-           aria-expanded="false">Add</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="${pageContext.request.contextPath}/registration">USER</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath}/products/add">PRODUCT</a>
-        </div>
     </li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown"
            href="#" role="button" aria-haspopup="true"
-           aria-expanded="false">SHOW</a>
+           aria-expanded="false">USER MENU</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="${pageContext.request.contextPath}/users">USER</a>
             <a class="dropdown-item" href="${pageContext.request.contextPath}/products">PRODUCT</a>
             <a class="dropdown-item" href="${pageContext.request.contextPath}/shopping-cart/products/add">CART</a>
             <a class="dropdown-item" href="${pageContext.request.contextPath}/orders">ORDER</a>
@@ -35,17 +26,22 @@
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown"
            href="#" role="button" aria-haspopup="true"
-           aria-expanded="false">SHOW(ADMIN)</a>
+           aria-expanded="false">ADMIN MENU</a>
         <div class="dropdown-menu">
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/users">VIEW USERS</a>
             <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/orders">VIEW ORDERS</a>
             <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/products">MANAGE PRODUCTS</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/products/add">ADD NEW PRODUCT</a>
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link alert-dark" href="${pageContext.request.contextPath}/registration">REGISTRATION</a>
+        <a class="nav-link alert-info" href="${pageContext.request.contextPath}/registration">REGISTRATION</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="${pageContext.request.contextPath}/login">Login</a>
+        <a class="nav-link alert-success" href="${pageContext.request.contextPath}/login">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link alert-danger" href="${pageContext.request.contextPath}/logout">Logout</a>
     </li>
     <li class="nav-item">
         <a class="nav-link active" href="${pageContext.request.contextPath}/inject-data">Inject</a>

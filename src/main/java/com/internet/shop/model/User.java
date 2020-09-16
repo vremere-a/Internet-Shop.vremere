@@ -1,5 +1,6 @@
 package com.internet.shop.model;
 
+import java.util.Set;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -13,9 +14,9 @@ public class User {
     @NonNull
     private String email;
     @NonNull
-    private Long phone;
-    @NonNull
     private String login;
     @NonNull
     private String password;
+
+    private Set<Role> roles;
 }
