@@ -7,6 +7,7 @@
     <title>All users</title>
 </head>
 <body>
+<%@include file="/WEB-INF/views/index.jsp" %>
 <h1>All users page</h1>
 <table class="table table-dark">
     <thead>
