@@ -7,6 +7,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="/WEB-INF/views/index.jsp" %>
 <h2>DETAILS ORDER</h2>
 <p>
     <a href="${pageContext.request.contextPath}/products" class="btn btn-info" role="button" aria-pressed="true">back to
@@ -43,10 +44,7 @@
     </tr>
     </tbody>
 </table>
-<p>
-    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
-        main page</a>
-</p>
+
 
 </body>
 </html>

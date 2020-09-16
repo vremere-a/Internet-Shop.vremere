@@ -10,11 +10,8 @@
         }
     </style>
 </head>
+<%@include file="/WEB-INF/views/index.jsp" %>
 <body>
-<p>
-    <a href="${pageContext.request.contextPath}/registration" class="btn btn-warning" role="button"
-       aria-pressed="true">REGISTRATION</a>
-</p>
 <h1>Login page</h1>
 <h4 style="color: red"> ${errorMsg} </h4>
 
@@ -33,9 +30,5 @@
     <button type="submit" class="btn btn-primary">Login</button>
     <p>
 </form>
-<p>
-    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
-        main page</a>
-</p>
 </body>
 </html>

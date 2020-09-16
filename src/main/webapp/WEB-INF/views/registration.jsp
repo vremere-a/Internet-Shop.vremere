@@ -11,6 +11,7 @@
     </style>
 </head>
 <body>
+<%@include file="/WEB-INF/views/index.jsp" %>
 <h1>USER REGISTRATION</h1>
 
 <h4 style="color: red">${message}</h4>
@@ -53,9 +54,5 @@
     <button type="submit" class="btn btn-primary">Register</button>
     <p>
 </form>
-<p>
-    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary" role="button" aria-pressed="true">back to
-        main page</a>
-</p>
 </body>
 </html>

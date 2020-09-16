@@ -37,15 +37,18 @@
            href="#" role="button" aria-haspopup="true"
            aria-expanded="false">SHOW(ADMIN)</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/products">USER</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/orders">PRODUCT</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/orders">VIEW ORDERS</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/products">MANAGE PRODUCTS</a>
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="${pageContext.request.contextPath}/inject-data">Inject</a>
+        <a class="nav-link alert-dark" href="${pageContext.request.contextPath}/registration">REGISTRATION</a>
     </li>
     <li class="nav-item">
         <a class="nav-link active" href="${pageContext.request.contextPath}/login">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="${pageContext.request.contextPath}/inject-data">Inject</a>
     </li>
 </ul>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
