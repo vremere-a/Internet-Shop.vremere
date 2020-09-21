@@ -19,8 +19,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection
-                    .prepareStatement(
+            PreparedStatement statement = connection.prepareStatement(
                             "INSERT INTO products (product_name, price) VALUES (?, ?)",
                             Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, product.getName());
@@ -32,7 +31,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return product;
         } catch (SQLException ex) {
-            throw new DataProcessingException("Created product " + product + " is failed!", ex);
+            throw new DataProcessingException("Can't create product " + product + " !", ex);
         }
     }
 
@@ -49,8 +48,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 return Optional.of(product);
             }
             return Optional.empty();
-        } catch (SQLException e) {
-            throw new DataProcessingException("Get product by id = " + id + " is failed!", e);
+        } catch (SQLException ex) {
+            throw new DataProcessingException("Can't get product by " + id + " !", ex);
         }
     }
 
@@ -66,7 +65,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.executeUpdate();
             return product;
         } catch (SQLException e) {
-            throw new DataProcessingException("Product update with id is failed!", e);
+            throw new DataProcessingException("Product update with "
+                    + product.getId() + "id is failed!", e);
         }
     }
 
@@ -78,8 +78,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
                             + " WHERE product_id = ? AND deleted = false");
             statement.setLong(1, id);
             return statement.executeUpdate() == 1;
-        } catch (SQLException e) {
-            throw new DataProcessingException("Del of product with id = " + id + " is failed!", e);
+        } catch (SQLException ex) {
+            throw new DataProcessingException("Can't delete product with id = " + id + " !", ex);
         }
     }
 
@@ -88,7 +88,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
-                    connection.prepareStatement("SELECT * FROM products AND deleted = false");
+                    connection.prepareStatement("SELECT * FROM products WHERE deleted = false");
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 Product product = getProductFromResultSet(resultSet);
