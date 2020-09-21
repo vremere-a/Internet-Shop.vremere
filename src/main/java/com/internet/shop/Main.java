@@ -1,17 +1,20 @@
 package com.internet.shop;
 
 import com.internet.shop.dao.interfaces.ProductDao;
-import com.internet.shop.dao.jdbc.ProductDaoJdbcImpl;
+import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
 
 public class Main {
-
     private static final Product xbox = new Product("XBOX", 700.00);
     private static final Product nintendo = new Product("Nintendo", 500.00);
     private static final Product ps4 = new Product("PS4", 480.00);
 
+    private static Injector injector = Injector.getInstance("com.internet.shop");
+
     public static void main(String[] args) {
-        ProductDao productDao = new ProductDaoJdbcImpl();
+        ProductDao productDao =
+                (ProductDao) injector.getInstance(ProductDao.class);
+
         productDao.create(xbox);
         productDao.create(nintendo);
         productDao.create(ps4);
