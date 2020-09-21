@@ -18,7 +18,6 @@ import java.util.Optional;
 public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product product) {
-
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection
                     .prepareStatement(
@@ -42,7 +41,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
         Product product;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM products WHERE product_id = ?");
+                    "SELECT * FROM products WHERE product_id = ? AND deleted = false");
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -59,7 +58,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Product update(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE products SET product_name = ?, price = ? WHERE product_id = ?");
+                    "UPDATE products SET product_name = ?, price = ? WHERE product_id = ? AND deleted = false");
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
             statement.setLong(3, product.getId());
@@ -86,7 +85,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public List<Product> getAll() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM products");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM products AND deleted = false");
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 Product product = getProductFromResultSet(resultSet);
