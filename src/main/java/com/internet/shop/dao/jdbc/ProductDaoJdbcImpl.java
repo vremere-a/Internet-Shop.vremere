@@ -58,7 +58,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Product update(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE products SET product_name = ?, price = ? WHERE product_id = ? AND deleted = false");
+                    "UPDATE products SET product_name = ?,"
+                            + " price = ? WHERE product_id = ? AND deleted = false");
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
             statement.setLong(3, product.getId());
@@ -73,7 +74,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public boolean deleteById(Long id) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE products SET deleted = true WHERE product_id = ? AND deleted = false");
+                    "UPDATE products SET deleted = true"
+                            + " WHERE product_id = ? AND deleted = false");
             statement.setLong(1, id);
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
@@ -85,7 +87,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public List<Product> getAll() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM products AND deleted = false");
+            PreparedStatement statement =
+                    connection.prepareStatement("SELECT * FROM products AND deleted = false");
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 Product product = getProductFromResultSet(resultSet);
