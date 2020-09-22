@@ -8,15 +8,20 @@ import lombok.Data;
 public class Order {
     private Long order_id;
     private List<Product> products;
-    private User user;
+    private Long userId;
 
-    public Order(User user) {
-        this.user = user;
+    public Order(Long userId) {
+        this.userId = userId;
         this.products = new ArrayList<>();
     }
-    public Order(Long order_id, User user) {
+    public Order(Long order_id, Long userId) {
         this.order_id = order_id;
-        this.user = user;
+        this.userId = userId;
         this.products = new ArrayList<>();
+    }
+    public Order(Long order_id, Long userId, List<Product> products) {
+        this.order_id = order_id;
+        this.userId = userId;
+        this.products = products;
     }
 }

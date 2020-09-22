@@ -2,13 +2,16 @@ package com.internet.shop;
 
 import com.internet.shop.dao.interfaces.OrderDao;
 import com.internet.shop.dao.interfaces.ProductDao;
+import com.internet.shop.database.Storage;
 import com.internet.shop.library.Injector;
+import com.internet.shop.model.Order;
 import com.internet.shop.model.Product;
 
 public class Main {
     private static final Product xbox = new Product("XBOX", 700.00);
     private static final Product nintendo = new Product("Nintendo", 500.00);
     private static final Product ps4 = new Product("PS4", 480.00);
+    private static final Order order1 = new Order( 2L);
 
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private static ProductDao productDao =
@@ -18,15 +21,47 @@ public class Main {
 
     public static void main(String[] args) {
 
-        productDao.create(xbox);
-        productDao.create(nintendo);
-        productDao.create(ps4);
+//        productDao.create(xbox);
+//        productDao.create(nintendo);
+//        productDao.create(ps4);
+//
+//        System.out.println(productDao.getById(61L).toString());
+//        System.out.println(productDao.getAll().toString());
+//        productDao.update(new Product(61L, "X", 111));
+//        System.out.println(productDao.getById(61L).toString());
+//        productDao.deleteById(61L);
+//        System.out.println(productDao.getAll().toString());
 
-        System.out.println(productDao.getById(1L).toString());
-        System.out.println(productDao.getAll().toString());
-        productDao.update(new Product(1L, "vvvvv", 111));
-        System.out.println(productDao.getById(1L).toString());
-        productDao.deleteById(1L);
-        System.out.println(productDao.getAll().toString());
+
+//        System.out.println("create order User#2");
+//        System.out.println(orderDao.create(order1));
+//        System.out.println("get order by id");
+//        System.out.println(orderDao.getById(9L));
+//        System.out.println("get all order");
+//        System.out.println(orderDao.getAll());
+//        System.out.println("get user order");
+//        System.out.println(orderDao.getUserOrders(2L));
+        System.out.println("del order by id");
+        System.out.println(orderDao.deleteById(order1.getOrder_id()));
+
+//        orderDao.create(shoppingCartUser2);
+//        orderDao.create(shoppingCartUser2new);
+//        Storage.orders.forEach(System.out::println);
+//        Storage.shoppingCarts.forEach(System.out::println);
+//
+//        System.out.println("get User#2 orders");
+//        System.out.println(orderDao.getUserOrders(a.getId()));
+//
+//        System.out.println("get User#2 order by ID");
+//        System.out.println(orderDao.getById(a.getId()));
+//
+//        System.out.println("get All orders");
+//        orderDao.getAll();
+//        Storage.orders.forEach(System.out::println);
+//
+//        System.out.println("del order by ID");
+//        orderDao.deleteById(a.getId());
+//        Storage.orders.forEach(System.out::println);
+
     }
 }
