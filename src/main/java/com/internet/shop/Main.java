@@ -1,5 +1,6 @@
 package com.internet.shop;
 
+import com.internet.shop.dao.interfaces.OrderDao;
 import com.internet.shop.dao.interfaces.ProductDao;
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
@@ -8,9 +9,12 @@ public class Main {
     private static final Product xbox = new Product("XBOX", 700.00);
     private static final Product nintendo = new Product("Nintendo", 500.00);
     private static final Product ps4 = new Product("PS4", 480.00);
+
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private static ProductDao productDao =
             (ProductDao) injector.getInstance(ProductDao.class);
+    private static OrderDao orderDao =
+            (OrderDao) injector.getInstance(OrderDao.class);
 
     public static void main(String[] args) {
 

@@ -28,7 +28,7 @@ public class Storage {
     }
 
     public static void addOrder(Order order) {
-        order.setId(++orderId);
+        order.setOrder_id(++orderId);
         orders.add(order);
     }
 

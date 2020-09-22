@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@Dao
+
 public class OrderDaoImpl implements OrderDao {
     @Override
     public Order create(Order order) {
@@ -20,21 +20,21 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public Optional<Order> getById(Long id) {
         return getAll().stream()
-                .filter(order -> order.getId().equals(id))
+                .filter(order -> order.getOrder_id().equals(id))
                 .findFirst();
     }
 
     @Override
     public Order update(Order order) {
         IntStream.range(0, Storage.orders.size())
-                .filter(i -> Storage.orders.get(i).getId().equals(order.getId()))
+                .filter(i -> Storage.orders.get(i).getOrder_id().equals(order.getOrder_id()))
                 .forEach(i -> Storage.orders.set(i, order));
         return order;
     }
 
     @Override
     public boolean deleteById(Long id) {
-        return Storage.orders.removeIf(o -> o.getId().equals(id));
+        return Storage.orders.removeIf(o -> o.getOrder_id().equals(id));
     }
 
     @Override
@@ -45,7 +45,8 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> getUserOrders(Long userId) {
         return getAll().stream()
-                .filter(order -> order.getUserId().equals(userId))
+                .filter(order -> order.getUser().getId().equals(userId))
                 .collect(Collectors.toList());
+//        вопрос getUserId() - нужно менять
     }
 }
