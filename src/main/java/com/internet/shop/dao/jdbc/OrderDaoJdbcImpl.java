@@ -17,7 +17,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     public List<Order> getUserOrders(Long userId) {
         List<Order> orders = new ArrayList<>();
         String query = "SELECT * FROM orders o \n" +
-                "INNER JOIN order_products op ON o.order_id = op.order_id \n" +
+                "INNER JOIN orders_products op ON o.order_id = op.order_id \n" +
                 "INNER JOIN products p ON p.product_id = op.product_id \n" +
                 "WHERE o.user_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection()) {
@@ -95,7 +95,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             PreparedStatement statement =
                     connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 Order order = getOrderFromResultSet(resultSet);
                 orders.add(order);
             }

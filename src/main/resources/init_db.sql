@@ -92,3 +92,6 @@ CREATE TABLE `internet_shop`.`users_roles` (
 
 INSERT INTO `internet_shop`.`roles` (`role_id`, `role_name`) VALUES ('1', 'USER');
 INSERT INTO `internet_shop`.`roles` (`role_id`, `role_name`) VALUES ('2', 'ADMIN');
+
+ALTER TABLE `internet_shop`.`users`
+    ADD COLUMN `deleted` TINYINT NOT NULL DEFAULT 0 AFTER `password`;

@@ -90,7 +90,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement =
                     connection.prepareStatement("SELECT * FROM products WHERE deleted = false");
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 Product product = getProductFromResultSet(resultSet);
                 products.add(product);
             }
