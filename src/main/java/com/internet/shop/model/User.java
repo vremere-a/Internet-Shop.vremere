@@ -40,4 +40,6 @@ public class User {
         this.password = password;
         this.roles = roles;
     }
+    public User() {
+    };
 }

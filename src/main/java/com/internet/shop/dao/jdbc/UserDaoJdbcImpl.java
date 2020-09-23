@@ -7,27 +7,27 @@ import com.internet.shop.model.Role;
 import com.internet.shop.model.User;
 import com.internet.shop.util.ConnectionUtil;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Dao
 public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public Optional<User> findByLogin(String login) {
+        User user = new User();
         String query = "SELECT * FROM users WHERE login = ? AND deleted = false";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(getUserFromResultSet(resultSet));
+                user = getUserFromResultSet(resultSet);
             }
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't get user by " + login + " !", ex);
         }
-        return Optional.empty();
+        user.setRoles(getRolesOfUser(user.getId()));
+        return Optional.of(user);
     }
 
     @Override
@@ -47,14 +47,15 @@ public class UserDaoJdbcImpl implements UserDao {
             if (resultSet.next()) {
                 user.setId(resultSet.getLong(1));
             }
-            return insertRoleToUser(user);
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't create user " + user + " !", ex);
         }
+        return insertRoleToUser(user);
     }
 
     @Override
     public Optional<User> getById(Long id) {
+        User user = new User();
         String query = "SELECT * FROM users \n"
                 + "INNER JOIN users_roles \n"
                 + "ON users.user_id = users_roles.user_id \n"
@@ -64,12 +65,13 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(getUserFromResultSet(resultSet));
+                user = getUserFromResultSet(resultSet);
             }
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't get user by " + id + " !", ex);
         }
-        return Optional.empty();
+        user.setRoles(getRolesOfUser(user.getId()));
+        return Optional.of(user);
     }
 
     @Override
@@ -98,7 +100,7 @@ public class UserDaoJdbcImpl implements UserDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE users SET deleted = true"
-                            + " WHERE user_id = ? AND deleted = false");
+                            + " WHERE user_id = ?");
             statement.setLong(1, id);
             return statement.executeUpdate() == 1;
         } catch (SQLException ex) {
@@ -140,7 +142,7 @@ public class UserDaoJdbcImpl implements UserDao {
         } catch (SQLException e) {
             throw new DataProcessingException("insert role to User is failed!", e);
         }
-
+        user.setRoles(getRolesOfUser(user.getId()));
         return user;
     }
 
@@ -154,4 +156,25 @@ public class UserDaoJdbcImpl implements UserDao {
         return new User(id, name, surName, email, login, password);
     }
 
+    private Set<Role> getRolesOfUser(Long userId) {
+        String query = "SELECT roles.role_id, role_name FROM roles  INNER JOIN users_roles "
+                + "ON users_roles.role_id = roles.role_id WHERE users_roles.user_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            ResultSet rs = statement.executeQuery();
+            Set<Role> roles = new HashSet<>();
+            while (rs.next()) {
+                Long roleId = rs.getLong("role_id");
+                String roleName = rs.getString("role_name");
+                Role role = Role.of(roleName);
+                role.setId(roleId);
+                roles.add(role);
+            }
+            return roles;
+        } catch (SQLException e) {
+            throw new DataProcessingException("Couldn't get roles of user with ID = "
+                    + userId, e);
+        }
+    }
 }

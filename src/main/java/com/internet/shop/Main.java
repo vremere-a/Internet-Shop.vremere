@@ -8,7 +8,9 @@ import com.internet.shop.database.Storage;
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import static com.internet.shop.model.Role.RoleName.USER;
@@ -17,11 +19,17 @@ public class Main {
     private static final Product xbox = new Product("XBOX", 700.00);
     private static final Product nintendo = new Product("Nintendo", 500.00);
     private static final Product ps4 = new Product("PS4", 480.00);
-    private static final Order order1 = new Order( 15L);
+    private static final Order order1 = new Order( 47L);
     private static final User user =
             new User("artsss", "vremere",
-                    "av@ukt.net", "d", "4");
-    private static final ShoppingCart cart = new ShoppingCart(3L);
+                    "av@ukt.net", "test3", "1");
+    private static final User admin =
+            new User("admin", "vremere",
+                    "av@ukt.net", "admin2", "1");
+
+
+
+    private static final ShoppingCart cart = new ShoppingCart(47L);
 
 
     private static Injector injector = Injector.getInstance("com.internet.shop");
@@ -35,26 +43,45 @@ public class Main {
             (ShoppingCartDao) injector.getInstance(ShoppingCartDao.class);
 
     public static void main(String[] args) {
-                    /////USER////
+        List<Product> products = new ArrayList<>();
+        products.add(xbox);
+        products.add(ps4);
+
+                    /////USER//// - DONE
 //        System.out.println("create user");
-//        userDao.create(user);
 //        user.setRoles(Set.of(Role.of("USER")));
+//        userDao.create(user);
 
 //        System.out.println("get user by id");
-//        System.out.println(userDao.getById(27L));
+//        System.out.println(userDao.getById(44L));
 
-//        userDao.deleteById(user.getId());
-//        userDao.update(new User(3L,"arts322", "VremerE",
-//                "av@ukt.net", "d", "4"));
+//        userDao.deleteById(44L);
 
-//        System.out.println(userDao.getAll().toString());
+//        userDao.update(new User(44L,"attt", "vremere",
+//                "av@ukt.net", "test1", "1"));
+
+//        System.out.print(userDao.getAll().toString());
 
 //        System.out.println("get user by login");
 //        System.out.println(userDao.findByLogin(user.getLogin()));
 
                     /////CART////
-        System.out.println("create cart");
-        System.out.println(shoppingCartDao.create(cart));
+//        System.out.println("create cart");
+//        System.out.println(shoppingCartDao.create(cart));
+
+//            cart.setProducts(products);
+//        cart.getProducts().add(xbox);
+//        shoppingCartDao.update(cart);
+//            shoppingCartDao.update(new ShoppingCart(14L, products, 47L));
+//        System.out.println("get cart by id");
+//        System.out.println(shoppingCartDao.getById(14L));
+
+//        System.out.println("del cart by id");
+//        System.out.println(shoppingCartDao.deleteById(3L));
+
+//        System.out.println("getAll cart ");
+//        System.out.println(shoppingCartDao.getAll());
+
 
 
 //        productDao.create(xbox);
@@ -70,18 +97,17 @@ public class Main {
 
 
                     /////ORDER////
-//        System.out.println("create order ");
-//        System.out.println(orderDao.create(order1));
-
+        System.out.println("create order ");
+        System.out.println(orderDao.create(order1));
 
 //        System.out.println("get order by id");
 //        System.out.println(orderDao.getById(9L));
-//        System.out.println("get all order");
-//        System.out.println(orderDao.getAll());
-//        System.out.println("get user order");
-//        System.out.println(orderDao.getUserOrders(2L));
-//        System.out.println("del order by id");
-//        System.out.println(orderDao.deleteById(order1.getOrder_id()));
+        System.out.println("get all order");
+        System.out.println(orderDao.getAll());
+        System.out.println("get user order");
+        System.out.println(orderDao.getUserOrders(2L));
+        System.out.println("del order by id");
+        System.out.println(orderDao.deleteById(order1.getOrder_id()));
 
 
 

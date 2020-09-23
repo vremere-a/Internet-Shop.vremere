@@ -24,4 +24,6 @@ public class Order {
         this.userId = userId;
         this.products = products;
     }
+    public Order() {
+    }
 }

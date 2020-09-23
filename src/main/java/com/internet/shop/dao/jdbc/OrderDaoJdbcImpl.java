@@ -16,15 +16,12 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public List<Order> getUserOrders(Long userId) {
         List<Order> orders = new ArrayList<>();
-        String query = "SELECT * FROM orders o \n" +
-                "INNER JOIN orders_products op ON o.order_id = op.order_id \n" +
-                "INNER JOIN products p ON p.product_id = op.product_id \n" +
-                "WHERE o.user_id = ?;";
+        String query = "SELECT * FROM orders WHERE user_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 orders.add(getOrderFromResultSet(resultSet));
             }
         } catch (SQLException ex) {
@@ -53,18 +50,20 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Optional<Order> getById(Long id) {
-        String query = "SELECT * FROM orders WHERE order_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        Order order = new Order();
+        String query = "SELECT * FROM orders WHERE order_id = ?;";
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(getOrderFromResultSet(resultSet));
+                order = getOrderFromResultSet(resultSet);
             }
-        } catch (SQLException ex) {
-            throw new DataProcessingException("Can't get order by " + id + " !", ex);
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can not get order from DB with ID = " + id, e);
         }
-        return Optional.empty();
+        order.setProducts(getProductsFromOrder(order.getOrder_id()));
+        return Optional.of(order);
     }
 
     @Override
@@ -90,17 +89,18 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
-        String query = "SELECT * FROM orders";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement =
-                    connection.prepareStatement(query);
+        String query = "SELECT * FROM orders;";
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Order order = getOrderFromResultSet(resultSet);
-                orders.add(order);
+                orders.add(getOrderFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Get all orders is failed!", e);
+            throw new DataProcessingException("Can not get orders from DB", e);
+        }
+        for (Order order : orders) {
+            order.setProducts(getProductsFromOrder(order.getOrder_id()));
         }
         return orders;
     }
@@ -122,11 +122,12 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 statement.setLong(2, order.getProducts().get(i).getId());
                 statement.executeUpdate();
             }
+            return order;
         } catch (SQLException e) {
             throw new DataProcessingException("insert products to Order is failed!", e);
         }
-        return order;
     }
+
     private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong("product_id");
         String name = resultSet.getString("product_name");
