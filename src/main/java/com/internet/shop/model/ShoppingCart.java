@@ -14,4 +14,18 @@ public class ShoppingCart {
         this.userId = userId;
         this.products = new ArrayList<>();
     }
+
+    public ShoppingCart(Long id, List<Product> products, Long userId) {
+        this.id = id;
+        this.products = products;
+        this.userId = userId;
+    }
+
+    public ShoppingCart(Long id, Long userId) {
+        this.id = id;
+        this.userId = userId;
+    }
+
+    public ShoppingCart() {
+    }
 }

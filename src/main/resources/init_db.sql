@@ -41,7 +41,7 @@ ALTER TABLE `internet_shop`.`orders_products`
     ADD PRIMARY KEY (`id`);
 ;
 
-CREATE TABLE `internet_shop`.`shopping_cars` (
+CREATE TABLE `internet_shop`.`shopping_carts` (
                                                  `cart_id` BIGINT(11) NOT NULL,
                                                  `user_id` BIGINT(11) NOT NULL,
                                                  PRIMARY KEY (`cart_id`),
@@ -59,7 +59,7 @@ CREATE TABLE `internet_shop`.`shopping_carts_products` (
                                                            INDEX `products_carts_fk_idx` (`product_id` ASC) VISIBLE,
                                                            CONSTRAINT `carts_products_fk`
                                                                FOREIGN KEY (`cart_id`)
-                                                                   REFERENCES `internet_shop`.`shopping_cars` (`cart_id`)
+                                                                   REFERENCES `internet_shop`.`shopping_carts` (`cart_id`)
                                                                    ON DELETE NO ACTION
                                                                    ON UPDATE NO ACTION,
                                                            CONSTRAINT `products_carts_fk`

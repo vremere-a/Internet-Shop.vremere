@@ -3,8 +3,6 @@ package com.internet.shop.dao.jdbc;
 import com.internet.shop.dao.interfaces.UserDao;
 import com.internet.shop.exeptions.DataProcessingException;
 import com.internet.shop.library.Dao;
-import com.internet.shop.model.Order;
-import com.internet.shop.model.Product;
 import com.internet.shop.model.Role;
 import com.internet.shop.model.User;
 import com.internet.shop.util.ConnectionUtil;
@@ -18,6 +16,17 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public Optional<User> findByLogin(String login) {
+        String query = "SELECT * FROM users WHERE login = ? AND deleted = false";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, login);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return Optional.of(getUserFromResultSet(resultSet));
+            }
+        } catch (SQLException ex) {
+            throw new DataProcessingException("Can't get user by " + login + " !", ex);
+        }
         return Optional.empty();
     }
 
@@ -46,7 +55,10 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public Optional<User> getById(Long id) {
-        String query = "SELECT * FROM users WHERE user_id = ? AND deleted = false";
+        String query = "SELECT * FROM users \n"
+                + "INNER JOIN users_roles \n"
+                + "ON users.user_id = users_roles.user_id \n"
+                + "WHERE users.user_id = ? AND deleted = false";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
