@@ -20,8 +20,8 @@ public class Main {
     private static final Product ps4 = new Product("PS4", 480.00);
     private static final Order order1 = new Order( 2L);
     private static final User user =
-            new User(4L,"arts", "vremere",
-                    "av@ukt.net", "d", "4", Set.of(Role.of("USER")));
+            new User("arts", "vremere",
+                    "av@ukt.net", "d", "4");
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private static ProductDao productDao =
             (ProductDao) injector.getInstance(ProductDao.class);
@@ -32,6 +32,8 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("create user");
+        user.setId(7L);
+        user.setRoles(Set.of(Role.of("USER")));
         System.out.println(userDao.create(user));
 
 //        productDao.create(xbox);

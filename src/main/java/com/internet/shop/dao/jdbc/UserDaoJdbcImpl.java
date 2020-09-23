@@ -3,6 +3,8 @@ package com.internet.shop.dao.jdbc;
 import com.internet.shop.dao.interfaces.UserDao;
 import com.internet.shop.exeptions.DataProcessingException;
 import com.internet.shop.library.Dao;
+import com.internet.shop.model.Order;
+import com.internet.shop.model.Role;
 import com.internet.shop.model.User;
 import com.internet.shop.util.ConnectionUtil;
 
@@ -35,7 +37,7 @@ public class UserDaoJdbcImpl implements UserDao {
             if (resultSet.next()) {
                 user.setId(resultSet.getLong(1));
             }
-            return user;
+            return insertRoleToUser(user);
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't create user " + user + " !", ex);
         }
@@ -60,4 +62,23 @@ public class UserDaoJdbcImpl implements UserDao {
     public List<User> getAll() {
         return null;
     }
+
+    private User insertRoleToUser(User user) {
+        String query = "INSERT INTO users_roles (user_id, role_id) " +
+                "values (?, (SELECT role_id FROM roles WHERE role_name = ?))";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement =
+                    connection.prepareStatement(query);
+            for (Role r : user.getRoles()) {
+                statement.setLong(1, user.getId());
+                statement.setString(2, r.getRoleName().name());
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new DataProcessingException("insert role to User is failed!", e);
+        }
+
+        return user;
+    }
+
 }

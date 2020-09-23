@@ -90,5 +90,5 @@ CREATE TABLE `internet_shop`.`users_roles` (
                                                        ON DELETE NO ACTION
                                                        ON UPDATE NO ACTION);
 
-ALTER TABLE `internet_shop`.`users`
-    ADD COLUMN `role` VARCHAR(255) NOT NULL AFTER `password`;
+INSERT INTO `internet_shop`.`roles` (`role_id`, `role_name`) VALUES ('1', 'USER');
+INSERT INTO `internet_shop`.`roles` (`role_id`, `role_name`) VALUES ('2', 'ADMIN');
