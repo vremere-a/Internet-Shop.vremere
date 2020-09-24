@@ -118,7 +118,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     private ShoppingCart getCartFromResultSet(ResultSet resultSet) throws SQLException {
         Long cartId = resultSet.getLong("cart_id");
         Long userId = resultSet.getLong("user_id");
-        return new ShoppingCart(userId, cartId);
+        return new ShoppingCart(cartId, userId);
     }
 
     private List<Product> getProductsFromCart(Long cartId) {
@@ -129,11 +129,11 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, cartId);
-            ResultSet resultSet = statement.executeQuery();
+                ResultSet resultSet = statement.executeQuery();
             List<Product> products = new ArrayList<>();
             while (resultSet.next()) {
                 Long productId = resultSet.getLong("product_id");
-                String name = resultSet.getString("name");
+                String name = resultSet.getString("product_name");
                 double price = resultSet.getDouble("price");
                 products.add(new Product(productId, name, price));
             }
