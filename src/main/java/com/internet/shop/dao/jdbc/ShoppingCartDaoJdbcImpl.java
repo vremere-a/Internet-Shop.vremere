@@ -32,7 +32,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             throw new DataProcessingException("Can't get product by " + userId + " !", ex);
         }
         shoppingCart.setProducts(getProductsFromCart(shoppingCart.getId()));
-        return Optional.of(shoppingCart);
+        return Optional.ofNullable(shoppingCart);
     }
 
     @Override
@@ -92,9 +92,10 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            return statement.executeUpdate() == 1;
+            int updates = statement.executeUpdate();
+            return updates > 0;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete cart ", e);
+            throw new DataProcessingException("Can't delete cart " + id, e);
         }
     }
 

@@ -65,8 +65,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.executeUpdate();
             return product;
         } catch (SQLException e) {
-            throw new DataProcessingException("Product update with "
-                    + product.getId() + "id is failed!", e);
+            throw new DataProcessingException("Product update with id "
+                    + product.getId() + " is failed!", e);
         }
     }
 

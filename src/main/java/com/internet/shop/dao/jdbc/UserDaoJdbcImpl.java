@@ -35,7 +35,7 @@ public class UserDaoJdbcImpl implements UserDao {
             throw new DataProcessingException("Can't get user by " + login + " !", ex);
         }
         user.setRoles(getRolesOfUser(user.getId()));
-        return Optional.of(user);
+        return Optional.ofNullable(user);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class UserDaoJdbcImpl implements UserDao {
             throw new DataProcessingException("Can't get user by " + id + " !", ex);
         }
         user.setRoles(getRolesOfUser(user.getId()));
-        return Optional.of(user);
+        return Optional.ofNullable(user);
     }
 
     @Override
@@ -110,7 +110,8 @@ public class UserDaoJdbcImpl implements UserDao {
                     "UPDATE users SET deleted = true"
                             + " WHERE user_id = ?");
             statement.setLong(1, id);
-            return statement.executeUpdate() == 1;
+            int updates = statement.executeUpdate();
+            return updates > 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't delete user with id = " + id + " !", ex);
         }
