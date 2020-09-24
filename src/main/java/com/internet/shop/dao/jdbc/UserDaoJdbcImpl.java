@@ -6,16 +6,16 @@ import com.internet.shop.library.Dao;
 import com.internet.shop.model.Role;
 import com.internet.shop.model.User;
 import com.internet.shop.util.ConnectionUtil;
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Set;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.HashSet;
+import java.util.Set;
 
 @Dao
 public class UserDaoJdbcImpl implements UserDao {

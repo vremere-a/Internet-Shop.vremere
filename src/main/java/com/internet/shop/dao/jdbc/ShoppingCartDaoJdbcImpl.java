@@ -6,12 +6,11 @@ import com.internet.shop.library.Dao;
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.util.ConnectionUtil;
-
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -82,7 +81,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Couldn't delete products from shopping cart - "
                     + cart, e);
-        } insertProductsToCart(cart);
+        }
+        insertProductsToCart(cart);
         return cart;
     }
 
@@ -177,7 +177,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         String queryToUpdateProducts = "INSERT INTO shopping_carts_products(cart_id, product_id) "
                 + "VALUES(?, ?);";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(queryToUpdateProducts)) {
+                PreparedStatement statement = connection.prepareStatement(queryToUpdateProducts)) {
             statement.setLong(1, cart.getId());
             for (Product product : cart.getProducts()) {
                 statement.setLong(2, product.getId());

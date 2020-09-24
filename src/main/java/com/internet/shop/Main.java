@@ -9,15 +9,14 @@ import com.internet.shop.model.Order;
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 public class Main {
     private static final Product xbox = new Product("XBOX", 700.00);
     private static final Product nintendo = new Product("Nintendo", 500.00);
     private static final Product ps4 = new Product("PS4", 480.00);
-    private static final Order order1 = new Order( 47L);
+    private static final Order order1 = new Order(47L);
     private static final User user =
             new User("artsss", "vremere",
                     "av@ukt.net", "test3", "1");
@@ -25,10 +24,7 @@ public class Main {
             new User("admin", "vremere",
                     "av@ukt.net", "admin2", "1");
 
-
-
     private static final ShoppingCart cart = new ShoppingCart(47L);
-
 
     private static Injector injector = Injector.getInstance("com.internet.shop");
     private static ProductDao productDao =
@@ -40,12 +36,12 @@ public class Main {
     private static ShoppingCartDao shoppingCartDao =
             (ShoppingCartDao) injector.getInstance(ShoppingCartDao.class);
 
-    public static void main(String[] args) {
-        List<Product> products = new ArrayList<>();
-        products.add(xbox);
-        products.add(ps4);
+//    public static void main(String[] args) {
+//        List<Product> products = new ArrayList<>();
+//        products.add(xbox);
+//        products.add(ps4);
 
-                    /////USER//// - DONE
+        /////USER//// - DONE
 //        System.out.println("create user");
 //        user.setRoles(Set.of(Role.of("USER")));
 //        userDao.create(user);
@@ -63,7 +59,7 @@ public class Main {
 //        System.out.println("get user by login");
 //        System.out.println(userDao.findByLogin(user.getLogin()));
 
-                    /////CART////
+        /////CART////
 //        System.out.println("create cart");
 //        System.out.println(shoppingCartDao.create(cart));
 
@@ -80,8 +76,6 @@ public class Main {
 //        System.out.println("getAll cart ");
 //        System.out.println(shoppingCartDao.getAll());
 
-
-
 //        productDao.create(xbox);
 //        productDao.create(nintendo);
 //        productDao.create(ps4);
@@ -93,23 +87,18 @@ public class Main {
 //        productDao.deleteById(61L);
 //        System.out.println(productDao.getAll().toString());
 
-
-                    /////ORDER////
-        System.out.println("create order ");
-        System.out.println(orderDao.create(order1));
+        /////ORDER////
+//        System.out.println("create order ");
+//        System.out.println(orderDao.create(order1));
 
 //        System.out.println("get order by id");
 //        System.out.println(orderDao.getById(9L));
-        System.out.println("get all order");
-        System.out.println(orderDao.getAll());
-        System.out.println("get user order");
-        System.out.println(orderDao.getUserOrders(2L));
-        System.out.println("del order by id");
-        System.out.println(orderDao.deleteById(order1.getOrderId()));
-
-
-
-
+//        System.out.println("get all order");
+//        System.out.println(orderDao.getAll());
+//        System.out.println("get user order");
+//        System.out.println(orderDao.getUserOrders(2L));
+//        System.out.println("del order by id");
+//        System.out.println(orderDao.deleteById(order1.getOrderId()));
 
 //        orderDao.create(shoppingCartUser2);
 //        orderDao.create(shoppingCartUser2new);
@@ -128,7 +117,6 @@ public class Main {
 //
 //        System.out.println("del order by ID");
 //        orderDao.deleteById(a.getId());
-//        Storage.orders.forEach(System.out::println);
 
-    }
+//    }
 }
