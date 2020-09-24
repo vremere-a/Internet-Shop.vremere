@@ -14,7 +14,6 @@
     <tr>
         <th scope="col">User ID</th>
         <th scope="col">Order ID</th>
-        <th scope="col">Items</th>
         <th scope="col">Details</th>
         <th scope="col">Delete order</th>
     </tr>

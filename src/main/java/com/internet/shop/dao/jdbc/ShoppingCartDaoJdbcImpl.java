@@ -129,7 +129,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, cartId);
-                ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
             List<Product> products = new ArrayList<>();
             while (resultSet.next()) {
                 Long productId = resultSet.getLong("product_id");
