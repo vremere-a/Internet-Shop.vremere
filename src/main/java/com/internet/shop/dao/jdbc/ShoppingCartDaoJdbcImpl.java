@@ -82,7 +82,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             throw new DataProcessingException("Couldn't delete products from shopping cart - "
                     + cart, e);
         }
-        insertProductsToCart(cart);
+        addProductsToCart(cart);
         return cart;
     }
 
@@ -173,13 +173,13 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private ShoppingCart insertProductsToCart(ShoppingCart cart) {
+    private ShoppingCart addProductsToCart(ShoppingCart cart) {
         String queryToUpdateProducts = "INSERT INTO shopping_carts_products(cart_id, product_id) "
                 + "VALUES(?, ?);";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(queryToUpdateProducts)) {
-            statement.setLong(1, cart.getId());
             for (Product product : cart.getProducts()) {
+                statement.setLong(1, cart.getId());
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
             }
