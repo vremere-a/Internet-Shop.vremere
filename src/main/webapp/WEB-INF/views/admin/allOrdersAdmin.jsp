@@ -30,20 +30,20 @@
         </td>
         <td>
             <p class="text-center">
-                <c:out value="${order.id}"/>
+                <c:out value="${order.orderId}"/>
             </p>
         </td>
 
         <br>
         <td>
             <p class="text-center">
-                <a href="${pageContext.request.contextPath}/orders/details?id=${order.id}">Details</a>
+                <a href="${pageContext.request.contextPath}/orders/details?id=${order.orderId}">Details</a>
             </p>
         </td>
 
         <td>
             <p class="text-center">
-                <a href="${pageContext.request.contextPath}/orders/delete?id=${order.id}">Delete</a>
+                <a href="${pageContext.request.contextPath}/orders/delete?id=${order.orderId}">Delete</a>
             </p>
         </td>
     </tr>
