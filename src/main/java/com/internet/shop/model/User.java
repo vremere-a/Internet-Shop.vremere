@@ -31,7 +31,8 @@ public class User {
         this.password = password;
     }
 
-    public User(Long id, String name, String surname, String email, String login, String password, Set<Role> roles) {
+    public User (Long id, String name, String surname,
+                 String email, String login, String password, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -40,6 +41,8 @@ public class User {
         this.password = password;
         this.roles = roles;
     }
+
     public User() {
-    };
+    }
+
 }

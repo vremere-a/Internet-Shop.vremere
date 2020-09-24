@@ -6,7 +6,12 @@ import com.internet.shop.library.Dao;
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.util.ConnectionUtil;
-import java.sql.*;
+
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -71,16 +76,15 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     public ShoppingCart update(ShoppingCart cart) {
         String queryToDeleteProducts = "DELETE FROM shopping_carts_products WHERE cart_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(queryToDeleteProducts)) {
+                PreparedStatement statement = connection.prepareStatement(queryToDeleteProducts)) {
             statement.setLong(1, cart.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DataProcessingException("Couldn't delete products from shopping cart - "
                     + cart, e);
-        }
-        insertProductsToCart(cart);
+        } insertProductsToCart(cart);
         return cart;
-        }
+    }
 
     @Override
     public boolean deleteById(Long id) {
@@ -123,7 +127,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                 + "ON shopping_carts_products.product_id = products.product_id "
                 + "WHERE shopping_carts_products.cart_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, cartId);
             ResultSet resultSet = statement.executeQuery();
             List<Product> products = new ArrayList<>();
@@ -150,10 +154,10 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     private List<Product> getAllProductsFromCart(Long cartId) {
         Product product;
         List<Product> products = new ArrayList<>();
-        String query = "SELECT * FROM shopping_carts_products " +
-                "INNER JOIN products " +
-                "ON shopping_carts_products.product_id = products.product_id " +
-                "WHERE shopping_carts_products.order_id = ?";
+        String query = "SELECT * FROM shopping_carts_products "
+                + "INNER JOIN products "
+                + "ON shopping_carts_products.product_id = products.product_id "
+                + "WHERE shopping_carts_products.order_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
                     connection.prepareStatement(query);

@@ -6,8 +6,16 @@ import com.internet.shop.library.Dao;
 import com.internet.shop.model.Role;
 import com.internet.shop.model.User;
 import com.internet.shop.util.ConnectionUtil;
-import java.sql.*;
-import java.util.*;
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.HashSet;
 
 @Dao
 public class UserDaoJdbcImpl implements UserDao {
@@ -34,8 +42,8 @@ public class UserDaoJdbcImpl implements UserDao {
     public User create(User user) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO users(user_name, user_surname, email, login, password)\n" +
-                            "VALUE (?, ?, ?, ?, ?);",
+                    "INSERT INTO users(user_name, user_surname, email, login, password)\n"
+                            + "VALUE (?, ?, ?, ?, ?);",
                     Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
@@ -129,8 +137,8 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     private User insertRoleToUser(User user) {
-        String query = "INSERT INTO users_roles (user_id, role_id) " +
-                "values (?, (SELECT role_id FROM roles WHERE role_name = ?))";
+        String query = "INSERT INTO users_roles (user_id, role_id) "
+                + "values (?, (SELECT role_id FROM roles WHERE role_name = ?))";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
                     connection.prepareStatement(query);
@@ -160,7 +168,7 @@ public class UserDaoJdbcImpl implements UserDao {
         String query = "SELECT roles.role_id, role_name FROM roles  INNER JOIN users_roles "
                 + "ON users_roles.role_id = roles.role_id WHERE users_roles.user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             ResultSet rs = statement.executeQuery();
             Set<Role> roles = new HashSet<>();

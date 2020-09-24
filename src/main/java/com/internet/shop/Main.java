@@ -4,16 +4,14 @@ import com.internet.shop.dao.interfaces.OrderDao;
 import com.internet.shop.dao.interfaces.ProductDao;
 import com.internet.shop.dao.interfaces.ShoppingCartDao;
 import com.internet.shop.dao.interfaces.UserDao;
-import com.internet.shop.database.Storage;
 import com.internet.shop.library.Injector;
-import com.internet.shop.model.*;
+import com.internet.shop.model.Order;
+import com.internet.shop.model.Product;
+import com.internet.shop.model.ShoppingCart;
+import com.internet.shop.model.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-
-import static com.internet.shop.model.Role.RoleName.USER;
 
 public class Main {
     private static final Product xbox = new Product("XBOX", 700.00);
@@ -107,7 +105,7 @@ public class Main {
         System.out.println("get user order");
         System.out.println(orderDao.getUserOrders(2L));
         System.out.println("del order by id");
-        System.out.println(orderDao.deleteById(order1.getOrder_id()));
+        System.out.println(orderDao.deleteById(order1.getOrderId()));
 
 
 

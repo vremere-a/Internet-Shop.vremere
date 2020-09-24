@@ -6,7 +6,11 @@ import com.internet.shop.library.Dao;
 import com.internet.shop.model.Order;
 import com.internet.shop.model.Product;
 import com.internet.shop.util.ConnectionUtil;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +44,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
-                order.setOrder_id(resultSet.getLong(1));
+                order.setOrderId(resultSet.getLong(1));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't add products to order", e);
@@ -53,7 +57,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         Order order = new Order();
         String query = "SELECT * FROM orders WHERE order_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -62,13 +66,13 @@ public class OrderDaoJdbcImpl implements OrderDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Can not get order from DB with ID = " + id, e);
         }
-        order.setProducts(getProductsFromOrder(order.getOrder_id()));
+        order.setProducts(getProductsFromOrder(order.getOrderId()));
         return Optional.of(order);
     }
 
     @Override
     public Order update(Order order) {
-        deleteById(order.getOrder_id());
+        deleteById(order.getOrderId());
         create(order);
         return insertProductsToOrder(order);
     }
@@ -91,7 +95,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         List<Order> orders = new ArrayList<>();
         String query = "SELECT * FROM orders;";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 orders.add(getOrderFromResultSet(resultSet));
@@ -100,7 +104,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             throw new DataProcessingException("Can not get orders from DB", e);
         }
         for (Order order : orders) {
-            order.setProducts(getProductsFromOrder(order.getOrder_id()));
+            order.setProducts(getProductsFromOrder(order.getOrderId()));
         }
         return orders;
     }
@@ -118,7 +122,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             PreparedStatement statement =
                     connection.prepareStatement(query);
             for (int i = 0; i < order.getProducts().size(); i++) {
-                statement.setLong(1, order.getOrder_id());
+                statement.setLong(1, order.getOrderId());
                 statement.setLong(2, order.getProducts().get(i).getId());
                 statement.executeUpdate();
             }
@@ -138,10 +142,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
     private List<Product> getProductsFromOrder(Long orderId) {
         Product product;
         List<Product> products = new ArrayList<>();
-        String query = "SELECT * FROM orders_products " +
-                "INNER JOIN products " +
-                "ON orders_products.product_id = products.product_id " +
-                "WHERE order_id = ?";
+        String query = "SELECT * FROM orders_products "
+                + "INNER JOIN products "
+                + "ON orders_products.product_id = products.product_id "
+                + "WHERE order_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
                     connection.prepareStatement(query);

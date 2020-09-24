@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class Order {
-    private Long order_id;
+    private Long orderId;
     private List<Product> products;
     private Long userId;
 
@@ -14,16 +14,19 @@ public class Order {
         this.userId = userId;
         this.products = new ArrayList<>();
     }
-    public Order(Long order_id, Long userId) {
-        this.order_id = order_id;
+
+    public Order(Long orderId, Long userId) {
+        this.orderId = orderId;
         this.userId = userId;
         this.products = new ArrayList<>();
     }
-    public Order(Long order_id, Long userId, List<Product> products) {
-        this.order_id = order_id;
+
+    public Order(Long orderId, Long userId, List<Product> products) {
+        this.orderId = orderId;
         this.userId = userId;
         this.products = products;
     }
+
     public Order() {
     }
 }
