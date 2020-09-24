@@ -144,35 +144,6 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
-        Long id = resultSet.getLong("product_id");
-        String name = resultSet.getString("product_name");
-        double price = resultSet.getDouble("price");
-        return new Product(id, name, price);
-    }
-
-    private List<Product> getAllProductsFromCart(Long cartId) {
-        Product product;
-        List<Product> products = new ArrayList<>();
-        String query = "SELECT * FROM shopping_carts_products "
-                + "INNER JOIN products "
-                + "ON shopping_carts_products.product_id = products.product_id "
-                + "WHERE shopping_carts_products.order_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement =
-                    connection.prepareStatement(query);
-            statement.setLong(1, cartId);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                product = getProductFromResultSet(resultSet);
-                products.add(product);
-            }
-            return products;
-        } catch (SQLException ex) {
-            throw new DataProcessingException("Can't get products by " + cartId + " !", ex);
-        }
-    }
-
     private ShoppingCart addProductsToCart(ShoppingCart cart) {
         String queryToUpdateProducts = "INSERT INTO shopping_carts_products(cart_id, product_id) "
                 + "VALUES(?, ?);";
