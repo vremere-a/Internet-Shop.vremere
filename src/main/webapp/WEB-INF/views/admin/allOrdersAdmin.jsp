@@ -9,6 +9,10 @@
 <body>
 <%@include file="/WEB-INF/views/index.jsp" %>
 <h2>ALL USERS ORDERS LIST (ADMIN)</h2>
+<p>
+    <a href="${pageContext.request.contextPath}/products" class="btn btn-info" role="button" aria-pressed="true">back to
+        all items page</a>
+</p>
 <table class="table table-danger">
     <thead>
     <tr>
@@ -20,7 +24,7 @@
     </thead>
     <tbody>
     <tr>
-    <c:forEach var="order" items="${orders}">
+        <c:forEach var="order" items="${orders}">
     <tr>
         <td>
             <p class="text-center">
@@ -32,8 +36,6 @@
                 <c:out value="${order.orderId}"/>
             </p>
         </td>
-
-        <br>
         <td>
             <p class="text-center">
                 <a href="${pageContext.request.contextPath}/orders/details?id=${order.orderId}">Details</a>
@@ -49,9 +51,8 @@
     </c:forEach>
     </tr>
     </tbody>
-    <p>
-        <a href="${pageContext.request.contextPath}/products" class="btn btn-info" role="button" aria-pressed="true">back to all items page</a>
-    </p>
 </table>
+
+
 </body>
 </html>

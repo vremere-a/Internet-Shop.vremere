@@ -29,7 +29,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 orders.add(getOrderFromResultSet(resultSet));
             }
         } catch (SQLException ex) {
-            throw new DataProcessingException("Can't get product by " + userId + " !", ex);
+            throw new DataProcessingException("Can't get order by " + userId + " !", ex);
         }
         return orders;
     }
@@ -54,7 +54,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Optional<Order> getById(Long id) {
-        Order order = new Order();
+        Order order = null;
+        List<Product> products;
         String query = "SELECT * FROM orders WHERE order_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
@@ -66,15 +67,28 @@ public class OrderDaoJdbcImpl implements OrderDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get order from DB with ID = " + id, e);
         }
-        order.setProducts(getProductsFromOrder(order.getOrderId()));
+        if (order != null) {
+            products = getProductsFromOrder(order.getOrderId());
+            order.setProducts(products);
+        }
         return Optional.ofNullable(order);
     }
 
     @Override
     public Order update(Order order) {
-        deleteById(order.getOrderId());
-        create(order);
-        return addProductsToOrder(order);
+        String query = "UPDATE orders SET user_id = ? "
+                + "WHERE order_id = ? AND deleted = false";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, order.getUserId());
+            statement.setLong(2, order.getOrderId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't to update order " + order.getOrderId(), e);
+        }
+        deleteProducts(order);
+        addNewProducts(order);
+        return order;
     }
 
     @Override
@@ -83,7 +97,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, orderId);
-            return statement.executeUpdate() == 1;
+            int updates = statement.executeUpdate();
+            return updates > 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete products from order by " + orderId, e);
         }
@@ -92,20 +107,48 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
-        String query = "SELECT * FROM orders;";
-        try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
+        String query = "SELECT * FROM orders WHERE deleted = FALSE";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                orders.add(getOrderFromResultSet(resultSet));
+                Order order = getOrderFromResultSet(resultSet);
+                orders.add(order);
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get orders from DB", e);
+            throw new DataProcessingException("Can't to get all carts!", e);
         }
         for (Order order : orders) {
-            order.setProducts(getProductsFromOrder(order.getOrderId()));
+            order.getProducts().addAll(getProductsFromOrder(order.getOrderId()));
         }
         return orders;
+    }
+
+    private void addNewProducts(Order order) {
+        String query = "INSERT INTO orders_products (order_id, product_id) VALUES (?, ?)";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            for (Product product : order.getProducts()) {
+                statement.setLong(1, order.getOrderId());
+                statement.setLong(2, product.getId());
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't to set order products "
+                    + order.getOrderId(), e);
+        }
+    }
+
+    private void deleteProducts(Order order) {
+        String query = "DELETE FROM orders_products WHERE order_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, order.getOrderId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't to delete order products "
+                    + order.getOrderId(), e);
+        }
     }
 
     private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {
@@ -139,7 +182,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private List<Product> getProductsFromOrder(Long orderId) {
-        Product product;
         List<Product> products = new ArrayList<>();
         String query = "SELECT * FROM orders_products "
                 + "INNER JOIN products "
@@ -151,7 +193,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(1, orderId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                product = getProductFromResultSet(resultSet);
+                Product product = getProductFromResultSet(resultSet);
                 products.add(product);
             }
             return products;
