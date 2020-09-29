@@ -116,10 +116,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 orders.add(order);
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't to get all carts!", e);
+            throw new DataProcessingException("Can't to get all orders!", e);
         }
         for (Order order : orders) {
-            order.getProducts().addAll(getProductsFromOrder(order.getOrderId()));
+            order.setProducts(getProductsFromOrder(order.getOrderId()));
         }
         return orders;
     }

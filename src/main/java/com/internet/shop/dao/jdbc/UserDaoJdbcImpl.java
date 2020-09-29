@@ -166,7 +166,6 @@ public class UserDaoJdbcImpl implements UserDao {
         } catch (SQLException e) {
             throw new DataProcessingException("insert role to User is failed!", e);
         }
-        user.setRoles(getRolesOfUser(user.getId()));
         return user;
     }
 
