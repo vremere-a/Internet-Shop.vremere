@@ -57,7 +57,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Product update(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE products SET product_name = ?,"
+                    "UPDATE products SET product_name = ?, "
                             + " price = ? WHERE product_id = ? AND deleted = false");
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
@@ -65,8 +65,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.executeUpdate();
             return product;
         } catch (SQLException e) {
-            throw new DataProcessingException("Product update with "
-                    + product.getId() + "id is failed!", e);
+            throw new DataProcessingException("Product update with id "
+                    + product.getId() + " is failed!", e);
         }
     }
 
@@ -90,7 +90,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement =
                     connection.prepareStatement("SELECT * FROM products WHERE deleted = false");
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 Product product = getProductFromResultSet(resultSet);
                 products.add(product);
             }
