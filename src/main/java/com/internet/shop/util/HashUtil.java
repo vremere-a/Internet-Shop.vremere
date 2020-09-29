@@ -1,10 +1,9 @@
 package com.internet.shop.util;
 
-import org.apache.log4j.Logger;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import org.apache.log4j.Logger;
 
 public class HashUtil {
     private static final String HASH_ALGORITHM = "SHA-512";
