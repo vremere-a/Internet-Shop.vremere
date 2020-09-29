@@ -40,8 +40,8 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User create(User user) {
-        String query = "INSERT INTO users(user_name, user_surname, email, login, password)\n"
-                + "VALUE (?, ?, ?, ?, ?);";
+        String query = "INSERT INTO users(user_name, user_surname, email, login, password, salt)\n"
+                + "VALUE (?, ?, ?, ?, ?, ?);";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query,
                     Statement.RETURN_GENERATED_KEYS);
@@ -50,6 +50,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setString(3, user.getEmail());
             statement.setString(4, user.getLogin());
             statement.setString(5, user.getPassword());
+            statement.setBytes(6, user.getSalt());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -84,14 +85,15 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User update(User user) {
-        String query = "UPDATE users SET name = ?, login = ?, password = ? "
+        String query = "UPDATE users SET name = ?, login = ?, password = ?, salt = ? "
                 + "WHERE deleted = FALSE AND user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, user.getName());
             statement.setString(2, user.getLogin());
             statement.setString(3, user.getPassword());
-            statement.setLong(4, user.getId());
+            statement.setBytes(4, user.getSalt());
+            statement.setLong(5, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't to update product "
@@ -176,6 +178,7 @@ public class UserDaoJdbcImpl implements UserDao {
         String email = resultSet.getString("email");
         String login = resultSet.getString("login");
         String password = resultSet.getString("password");
+//        byte[] salt = resultSet.getBytes("salt");
         return new User(id, name, surName, email, login, password);
     }
 

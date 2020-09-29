@@ -21,20 +21,30 @@ CREATE TABLE `internet_shop`.`orders` (
 
 
 CREATE TABLE `internet_shop`.`orders_products` (
-                                                   `order_id` BIGINT(11) NOT NULL,
-                                                   `product_id` BIGINT(11) NOT NULL,
-                                                   INDEX `orders_products_fk_idx` (`order_id` ASC) VISIBLE,
-                                                   INDEX `products_orders_fk_idx` (`product_id` ASC) VISIBLE,
-                                                   CONSTRAINT `orders_products_fk`
-                                                       FOREIGN KEY (`order_id`)
-                                                           REFERENCES `internet_shop`.`orders` (`order_id`)
-                                                           ON DELETE NO ACTION
-                                                           ON UPDATE NO ACTION,
-                                                   CONSTRAINT `products_orders_fk`
-                                                       FOREIGN KEY (`product_id`)
-                                                           REFERENCES `internet_shop`.`products` (`product_id`)
-                                                           ON DELETE NO ACTION
-                                                           ON UPDATE NO ACTION);
+                                   `order_id` bigint NOT NULL,
+                                   `product_id` bigint NOT NULL,
+                                   KEY `orders_products_fk_idx` (`order_id`),
+                                   KEY `products_orders_fk_idx` (`product_id`),
+                                   CONSTRAINT `orders_products_fk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+                                   CONSTRAINT `products_orders_fk` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+# CREATE TABLE `internet_shop`.`orders_products` (
+#                                                    `order_id` BIGINT(11) NOT NULL,
+#                                                    `product_id` BIGINT(11) NOT NULL,
+#                                                    INDEX `orders_products_fk_idx` (`order_id` ASC) VISIBLE,
+#                                                    INDEX `products_orders_fk_idx` (`product_id` ASC) VISIBLE,
+#                                                    CONSTRAINT `orders_products_fk`
+#                                                        FOREIGN KEY (`order_id`)
+#                                                            REFERENCES `internet_shop`.`orders` (`order_id`)
+#                                                            ON DELETE NO ACTION
+#                                                            ON UPDATE NO ACTION,
+#                                                    CONSTRAINT `products_orders_fk`
+#                                                        FOREIGN KEY (`product_id`)
+#                                                            REFERENCES `internet_shop`.`products` (`product_id`)
+#                                                            ON DELETE NO ACTION
+#                                                            ON UPDATE NO ACTION);
 
 ALTER TABLE `internet_shop`.`orders_products`
     ADD COLUMN `id` BIGINT(11) NOT NULL AUTO_INCREMENT FIRST,
@@ -93,5 +103,17 @@ CREATE TABLE `internet_shop`.`users_roles` (
 INSERT INTO `internet_shop`.`roles` (`role_id`, `role_name`) VALUES ('1', 'USER');
 INSERT INTO `internet_shop`.`roles` (`role_id`, `role_name`) VALUES ('2', 'ADMIN');
 
-ALTER TABLE `internet_shop`.`users`
-    ADD COLUMN `deleted` TINYINT NOT NULL DEFAULT 0 AFTER `password`;
+CREATE TABLE `internet_shop`.`users` (
+                         `user_id` bigint NOT NULL AUTO_INCREMENT,
+                         `user_name` varchar(255) NOT NULL,
+                         `user_surname` varchar(255) NOT NULL,
+                         `email` varchar(255) NOT NULL,
+                         `login` varchar(255) NOT NULL,
+                         `password` varchar(255) NOT NULL,
+                         `salt` blob,
+                         `deleted` tinyint NOT NULL DEFAULT '0',
+                         PRIMARY KEY (`user_id`),
+                         UNIQUE KEY `login_UNIQUE` (`login`)
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+
+

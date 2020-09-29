@@ -12,6 +12,7 @@ public class User {
     private String email;
     private String login;
     private String password;
+    private byte[] salt;
     private Set<Role> roles;
 
     public User(String name, String surname, String email, String login, String password) {
@@ -32,7 +33,7 @@ public class User {
     }
 
     public User(Long id, String name, String surname,
-                 String email, String login, String password, Set<Role> roles) {
+                String email, String login, String password, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.surname = surname;
