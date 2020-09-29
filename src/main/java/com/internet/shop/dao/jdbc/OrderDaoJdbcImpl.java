@@ -31,6 +31,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't get order by " + userId + " !", ex);
         }
+        for (Order order : orders) {
+            order.setProducts(getProductsFromOrder(order.getOrderId()));
+        }
         return orders;
     }
 
@@ -154,8 +157,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {
         Long orderId = resultSet.getLong("order_id");
         Long userId = resultSet.getLong("user_id");
-        List<Product> products = getProductsFromOrder(orderId);
-        return new Order(orderId, userId, products);
+        return new Order(orderId, userId);
     }
 
     private Order addProductsToOrder(Order order) {
