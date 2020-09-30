@@ -21,35 +21,22 @@ CREATE TABLE `internet_shop`.`orders` (
 
 
 CREATE TABLE `internet_shop`.`orders_products` (
-                                   `order_id` bigint NOT NULL,
-                                   `product_id` bigint NOT NULL,
-                                   KEY `orders_products_fk_idx` (`order_id`),
-                                   KEY `products_orders_fk_idx` (`product_id`),
-                                   CONSTRAINT `orders_products_fk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
-                                   CONSTRAINT `products_orders_fk` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
+`order_id` bigint NOT NULL,
+`product_id` bigint NOT NULL,
+KEY `orders_products_fk_idx` (`order_id`),
+KEY `products_orders_fk_idx` (`product_id`),
+CONSTRAINT `orders_products_fk`
+    FOREIGN KEY (`order_id`)
+        REFERENCES `orders` (`order_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+CONSTRAINT `products_orders_fk`
+    FOREIGN KEY (`product_id`)
+        REFERENCES `products` (`product_id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-# CREATE TABLE `internet_shop`.`orders_products` (
-#                                                    `order_id` BIGINT(11) NOT NULL,
-#                                                    `product_id` BIGINT(11) NOT NULL,
-#                                                    INDEX `orders_products_fk_idx` (`order_id` ASC) VISIBLE,
-#                                                    INDEX `products_orders_fk_idx` (`product_id` ASC) VISIBLE,
-#                                                    CONSTRAINT `orders_products_fk`
-#                                                        FOREIGN KEY (`order_id`)
-#                                                            REFERENCES `internet_shop`.`orders` (`order_id`)
-#                                                            ON DELETE NO ACTION
-#                                                            ON UPDATE NO ACTION,
-#                                                    CONSTRAINT `products_orders_fk`
-#                                                        FOREIGN KEY (`product_id`)
-#                                                            REFERENCES `internet_shop`.`products` (`product_id`)
-#                                                            ON DELETE NO ACTION
-#                                                            ON UPDATE NO ACTION);
-
-ALTER TABLE `internet_shop`.`orders_products`
-    ADD COLUMN `id` BIGINT(11) NOT NULL AUTO_INCREMENT FIRST,
-    ADD PRIMARY KEY (`id`);
-;
 
 CREATE TABLE `internet_shop`.`shopping_carts` (
                                                  `cart_id` BIGINT(11) NOT NULL,
@@ -110,7 +97,7 @@ CREATE TABLE `internet_shop`.`users` (
                          `email` varchar(255) NOT NULL,
                          `login` varchar(255) NOT NULL,
                          `password` varchar(255) NOT NULL,
-                         `salt` blob,
+                         `salt` blob NOT NULL,
                          `deleted` tinyint NOT NULL DEFAULT '0',
                          PRIMARY KEY (`user_id`),
                          UNIQUE KEY `login_UNIQUE` (`login`)
