@@ -10,6 +10,22 @@ CREATE TABLE `internet_shop`.`products`
     UNIQUE INDEX `productName_UNIQUE` (`productName` ASC) VISIBLE
 );
 
+CREATE TABLE `internet_shop`.`users`
+(
+    `user_id`      bigint       NOT NULL AUTO_INCREMENT,
+    `user_name`    varchar(255) NOT NULL,
+    `user_surname` varchar(255) NOT NULL,
+    `email`        varchar(255) NOT NULL,
+    `login`        varchar(255) NOT NULL,
+    `password`     varchar(255) NOT NULL,
+    `salt`         blob         NOT NULL,
+    `deleted`      tinyint      NOT NULL DEFAULT '0',
+    PRIMARY KEY (`user_id`),
+    UNIQUE KEY `login_UNIQUE` (`login`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 79
+  DEFAULT CHARSET = utf8;
+
 CREATE TABLE `internet_shop`.`orders`
 (
     `order_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
@@ -82,21 +98,10 @@ CREATE TABLE `internet_shop`.`roles`
     PRIMARY KEY (`role_id`)
 );
 
-CREATE TABLE `internet_shop`.`users`
-(
-    `user_id`      bigint       NOT NULL AUTO_INCREMENT,
-    `user_name`    varchar(255) NOT NULL,
-    `user_surname` varchar(255) NOT NULL,
-    `email`        varchar(255) NOT NULL,
-    `login`        varchar(255) NOT NULL,
-    `password`     varchar(255) NOT NULL,
-    `salt`         blob         NOT NULL,
-    `deleted`      tinyint      NOT NULL DEFAULT '0',
-    PRIMARY KEY (`user_id`),
-    UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 79
-  DEFAULT CHARSET = utf8;
+INSERT INTO `internet_shop`.`roles` (`role_id`, `role_name`)
+VALUES ('1', 'USER');
+INSERT INTO `internet_shop`.`roles` (`role_id`, `role_name`)
+VALUES ('2', 'ADMIN');
 
 CREATE TABLE `internet_shop`.`users_roles`
 (
@@ -115,8 +120,3 @@ CREATE TABLE `internet_shop`.`users_roles`
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );
-
-INSERT INTO `internet_shop`.`roles` (`role_id`, `role_name`)
-VALUES ('1', 'USER');
-INSERT INTO `internet_shop`.`roles` (`role_id`, `role_name`)
-VALUES ('2', 'ADMIN');
