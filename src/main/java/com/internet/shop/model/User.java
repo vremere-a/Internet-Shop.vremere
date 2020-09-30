@@ -43,6 +43,16 @@ public class User {
         this.roles = roles;
     }
 
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
+    public User(String name, String login, String password) {
+        this(login, password);
+        this.name = name;
+    }
+
     public User() {
     }
 
