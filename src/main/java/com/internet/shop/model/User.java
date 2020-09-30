@@ -24,33 +24,15 @@ public class User {
     }
 
     public User(Long id, String name, String surname, String email, String login, String password) {
+        this(name, surname, email, login, password);
         this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.login = login;
-        this.password = password;
+
     }
 
     public User(Long id, String name, String surname,
                 String email, String login, String password, Set<Role> roles) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.login = login;
-        this.password = password;
+        this(id, name, surname, email, login, password);
         this.roles = roles;
-    }
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    public User(String name, String login, String password) {
-        this(login, password);
-        this.name = name;
     }
 
     public User() {
