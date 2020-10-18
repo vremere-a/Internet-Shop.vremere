@@ -1,4 +1,4 @@
-CREATE SCHEMA `internet_shop` DEFAULT CHARACTER SET utf8;
+CREATE SCHEMA `internet_shop` DEFAULT CHARACTER SET utf8 ;
 
 CREATE TABLE `internet_shop`.`products`
 (
