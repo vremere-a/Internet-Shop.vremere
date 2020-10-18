@@ -22,8 +22,7 @@ public class Order {
     }
 
     public Order(Long orderId, Long userId, List<Product> products) {
-        this.orderId = orderId;
-        this.userId = userId;
+        this(orderId, userId);
         this.products = products;
     }
 

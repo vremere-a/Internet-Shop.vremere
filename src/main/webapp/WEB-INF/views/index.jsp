@@ -43,8 +43,14 @@
     <li class="nav-item">
         <a class="nav-link alert-danger" href="${pageContext.request.contextPath}/logout">Logout</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="${pageContext.request.contextPath}/inject-data">Inject</a>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+           href="#" role="button" aria-haspopup="true"
+           aria-expanded="false">INJECT</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/inject-products">INJECT PRODUCTS</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/inject-admin">INJECT ADMIN</a>
+        </div>
     </li>
 </ul>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

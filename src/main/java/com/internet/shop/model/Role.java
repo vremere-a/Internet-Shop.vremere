@@ -2,9 +2,11 @@ package com.internet.shop.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 public class Role {
     private long id;
     private RoleName roleName;
