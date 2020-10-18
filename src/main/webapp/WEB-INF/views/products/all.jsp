@@ -39,7 +39,7 @@
             </td>
             <td>
                 <p class="text-center">
-                    <a href="${pageContext.request.contextPath}/shopping-cart/product/add?id=${product.id}">Buy</a>
+                    <a href="${pageContext.request.contextPath}/shopping-cart/product/add?id=${product.id}">ADD to CART</a>
                 </p>
             </td>
         </tr>
